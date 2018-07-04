@@ -11,7 +11,7 @@
         const myEvent = new CustomEvent('myEvent', {
           detail:  {
             updateHtmlFn,
-            updateCSSFn,
+            updateCssFn,
             updateJavascriptFn
           }
       }, )
@@ -23,7 +23,7 @@
          dom.innerHTML = value
       }
 
-      function updateCSSFn( value ) {
+      function updateCssFn( value ) {
          const dom = document.getElementById( 'css' )
          dom.innerHTML = value
       }
