@@ -7,6 +7,7 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  color: #333;
 }
 #conatiner {
   width: 100%;
@@ -16,34 +17,63 @@ textarea {
   width: 100%;
   height: 100% !important;
   box-sizing: border-box;
+  border: none!important;
   resize: none;
 }
 
+#tabContainer {
+  position: absolute;
+  left: 0;
+  top:0;
+  z-index: 1;
+  width: 100%;
+  height: 30px;
+  box-sizing: border-box;
+  border-top: 1px solid grey;
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
+}
+
 #editAreaContainer {
-  float: left;
+  position: absolute;
+  left: 0;
+  top: 30px;
+  bottom: 0;
   width: 50%;
-  height: 100%;
+  box-sizing: border-box;
+  border: 1px solid grey;
 }
 
 #viewerBox {
-  float:left;
+  position: absolute;
+  right: 0;
+  top: 30px;
+  bottom: 0;
   width: 50%;
-  height: 100%;
+  box-sizing: border-box;
+  border-top: 1px solid grey;
+  border-right: 1px solid grey;
+  border-bottom: 1px solid grey;
 }
 
 
 /*
  * // Tab buttons
  */
-#tabContainer {
-  padding: 0 0 1px 0;
-  border-bottom: 1px solid grey;
-}
 
 .tabButton {
   float: left;
-  padding: 5px 10px;
+  padding: 0 10px;
+  line-height: 30px;
   cursor: pointer;
+}
+
+.tabButton.active {
+  color: #4169e1!important
+}
+
+.tabButton.empty {
+  color: #aaa;
 }
 
 .editArea {
