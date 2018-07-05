@@ -1,5 +1,5 @@
 const viewerBox = document.getElementById('viewerBox')
-const iframeDomString = '<iframe id="iframe" src="./iframe.html" frameborder="0"></iframe>'
+const iframeDomString = '<iframe id="iframe" src="./basicIframe.html" frameborder="0"></iframe>'
 
 /**
  * // Textarea
@@ -7,6 +7,9 @@ const iframeDomString = '<iframe id="iframe" src="./iframe.html" frameborder="0"
 const html = document.getElementById('html')
 const css = document.getElementById('css')
 const javascript = document.getElementById('javascript')
+const editAreaContainer = document.getElementById('editAreaContainer')
+
+
 
 /**
  * // Tab buttons
@@ -16,11 +19,20 @@ const cssBtn = document.getElementById('cssBtn')
 const javascriptBtn = document.getElementById('javascriptBtn')
 const resultBtn = document.getElementById('resultBtn')
 
+/**
+ * // constants
+ */
+const ACTIVE_STATUS_HTML = 'ACTIVE_STATUS_HTML'
+const ACTIVE_STATUS_CSS = 'ACTIVE_STATUS_CSS'
+const ACTIVE_STATUS_JAVASCRIPT = 'ACTIVE_STATUS_JAVASCRIPT'
+const ACTIVE_STATUS_RESULT = 'ACTIVE_STATUS_RESULT'
+
+const stateController = new StateConroller()
+
 init()
 bindTabButtonsEvents()
 bindTextareasEvents()
-hideAll()
-showElement(html)
+onlyShowEditAreaElement(html)
 
 refreshIframe()
 
@@ -30,15 +42,14 @@ function init() {
 
   function receiveMessage(event) {
     const { tsHtml, tsCss, tsJavascript } = event.data || {}
-    console.log( event.data )
     if ( tsHtml !== undefined ) {
-      html.innerHTML = tsHtml
+      html.value = tsHtml
     }
     if ( tsCss !== undefined ) {
-      css.innerHTML = tsCss
+      css.value = tsCss
     }
     if ( tsJavascript !== undefined ) {
-      html.innerHTML = tsJavascript
+      javascript.value = tsJavascript
     }
     refreshIframe()
   }
@@ -51,22 +62,19 @@ function bindTabButtonsEvents() {
   resultBtn.onclick = onResultBtnClick
 
   function onHtmlBtnClick() {
-    hideAll()
-    toggleDisplayElement(html)
+    stateController.activateHtml()
   }
 
   function onCssBtnClick() {
-    hideAll()
-    toggleDisplayElement(css)
+    stateController.activateCss()
   }
 
   function onJavascriptBtnClick() {
-    hideAll()
-    toggleDisplayElement(javascript)
+    stateController.activateJavascript()
   }
 
   function onResultBtnClick() {
-    hideAll()
+    stateController.activateResult()
   }
 }
 
@@ -128,8 +136,57 @@ function toggleDisplayElement(element) {
   hideElement(element)
 }
 
-function hideAll() {
+function onlyShowEditAreaElement(element) {
+  hideAllEditArea()
+  showElement( editAreaContainer )
+  showElement( element )
+}
+
+function onlyShowResult() {
+  percent100( viewerBox )
+  hideElement(editAreaContainer)
+}
+
+function hideAllEditArea() {
+  editAreaContainer.style.display = 'none';
   html.style.display = 'none';
   css.style.display = 'none';
   javascript.style.display = 'none';
+}
+
+function StateConroller() {
+  this.state = {
+    active: ACTIVE_STATUS_RESULT
+  }
+
+}
+
+function percent100( element ) {
+  element.style.width = '100%'
+}
+
+
+function percent50( element ) {
+  element.style.width = '50%'
+}
+
+
+StateConroller.prototype.activateHtml = function() {
+  this.state.active = ACTIVE_STATUS_HTML
+
+  onlyShowEditAreaElement(html)
+}
+StateConroller.prototype.activateCss = function() {
+  this.state.active = ACTIVE_STATUS_CSS
+
+  onlyShowEditAreaElement(css)
+}
+StateConroller.prototype.activateJavascript = function() {
+  this.state.active = ACTIVE_STATUS_JAVASCRIPT
+
+  onlyShowEditAreaElement(javascript)
+}
+StateConroller.prototype.activateResult = function() {
+  this.state.active = ACTIVE_STATUS_RESULT
+  onlyShowResult()
 }
