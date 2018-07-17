@@ -137,6 +137,7 @@ function init() {
       javascript.value = tsJavascript
     }
     refreshIframe()
+    stateController.emptyEmptyEditAreaTabButtonStyle()
   }
 }
 
