@@ -7,34 +7,41 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <script>
-      function init() {
-        const myEvent = new CustomEvent('myEvent', {
-          detail:  {
-            updateHtmlFn,
-            updateCssFn,
-            updateJavascriptFn
-          }
-      }, )
-        window.parent.dispatchEvent(myEvent)
-      }
-  
-      function updateHtmlFn( value ) {
-         const dom = document.body
-         dom.innerHTML = value
+    function init() {
+      const myEvent = new CustomEvent('myEvent', {
+        detail: {
+          updateHtmlFn,
+          updateCssFn,
+          updateJavascriptFn
+        }
+      })
+
+      window.parent.dispatchEvent(myEvent)
+
+
+      function updateHtmlFn(value) {
+        const dom = document.body
+        dom.innerHTML = value
       }
 
-      function updateCssFn( value ) {
-         const dom = document.getElementById( 'css' )
-         dom.innerHTML = value
+      function updateCssFn(value) {
+        const dom = document.getElementById('css')
+        dom.innerHTML = value
       }
-      function updateJavascriptFn( value ) {
-         const dom = document.getElementById( 'javascript' )
-         dom.innerHTML = value
+      function updateJavascriptFn(value) {
+        const dom = document.getElementById('javascript')
+        dom.innerHTML = value
       }
-  
-    </script>
-    <style id="css"></style>
-    <script id="javascript"></script>
+    }
+
+
+  </script>
+  <style id="css"></style>
 </head>
+
 <body onload="init()"></body>
+
+<script id="javascript">
+</script>
+
 </html>
