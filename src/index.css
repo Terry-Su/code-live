@@ -17,6 +17,7 @@ body {
 }
 textarea {
   width: 100%;
+  min-width: 390px;
   height: 100% !important;
   padding: 10px;
   box-sizing: border-box;
@@ -35,6 +36,7 @@ textarea {
   box-sizing: border-box;
   border-top: 1px solid grey;
   border-left: 1px solid grey;
+  border-right: 1px solid grey;
 }
 
 #editAreaContainer {
@@ -47,6 +49,7 @@ textarea {
   box-sizing: border-box;
   border: 1px solid grey;
   border-right: none!important;
+  overflow: auto;
 }
 
 #viewerBox {
