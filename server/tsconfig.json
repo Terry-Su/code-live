@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "types": ["node"],
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true
+  },
+  "include": [
+    "./**/*",
+    "./../config.ts"
+  ],
+}

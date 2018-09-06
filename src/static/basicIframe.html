@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script>
+    /**
+     * When this html is loaded, it would call parent 
+     * to pass the text of html, css javascript by 
+     * callbacks('updateData')
+    */
+    function init() {
+      const myEvent = new CustomEvent('BASIC_IFRAME_CUSTOM_EVENT', {
+        detail: {
+          updateData
+        }
+      })
+
+      window.parent.dispatchEvent(myEvent)
+
+      function updateData( { html, css, javascript } ) {
+        const htmlContainer = document.body
+        const cssContainer = document.getElementById('css')
+        const javascriptContainer = document.getElementById('javascript')
+
+        htmlContainer.innerHTML = html
+        cssContainer.innerHTML = css
+        javascriptContainer.innerHTML = javascript
+      }
+    }
+  </script>
+  <style id="css"></style>
+  <script id="javascript"></script>
+</head>
+
+<body onload="init()"></body>
+
+
+</html>

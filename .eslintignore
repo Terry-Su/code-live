@@ -1,0 +1,9 @@
+# Dependcies
+**/node_modules
+
+# Build results
+build
+
+# Template
+**/__template__.tsx
+
