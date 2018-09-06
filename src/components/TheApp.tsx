@@ -5,7 +5,11 @@ import mapStateStyle from "../utils/mapStateStyle"
 import "../styles/global.css"
 import BasicComponent from "./BasicComponent"
 import TheFoldButton from "./TheFoldButton"
-import { FOLD_BUTTON_WIDTH, FOLD_BUTTON_HEIGHT, NAV_HEIGHT } from "../constants/numbers"
+import {
+  FOLD_BUTTON_WIDTH,
+  FOLD_BUTTON_HEIGHT,
+  NAV_HEIGHT
+} from "../constants/numbers"
 import TheNav from "./TheNav/TheNav"
 import { notNil } from "../utils/lodash"
 import { isResultMode, isModeValid } from "../appUtils/getters"
@@ -13,36 +17,35 @@ import {
   BASIC_IFRAME_CUSTOM_EVENT,
   BASIC_IFRAME_UPDATE_DATA_FN
 } from "../constants/names"
-import { getUrlSearchParamsValue } from "../utils/js";
-import { modes } from "../constants/types";
+import { getUrlSearchParamsValue } from "../utils/js"
+import { modes } from "../constants/types"
 
 export default mapStateStyle({
   container: {
-    boxSizing: 'border-box',
+    boxSizing: "border-box",
     display: "flex",
     height: "100%",
     padding: `${ NAV_HEIGHT }px 0 0 0`,
-    "&>div": {
-      boxSizing: "border-box"
-    },
   },
   nav: {
     position: "absolute",
     left: "0",
-    top: "0",
+    top: "0"
     // width: '100%',
   },
   left: {
+    boxSizing: "border-box",
     border: "1px solid #ddd",
   },
   right: {
+    boxSizing: "border-box",
     width: "50%",
     border: "1px solid #ddd"
   },
   foldButton: {
     position: "absolute",
     top: "50%",
-    marginTop: `-${( FOLD_BUTTON_HEIGHT - NAV_HEIGHT ) / 2}px`
+    marginTop: `-${(FOLD_BUTTON_HEIGHT - NAV_HEIGHT) / 2}px`
   }
 })(
   class TheApp extends BasicComponent {
@@ -64,13 +67,15 @@ export default mapStateStyle({
 
     initializeByUrlParamaters() {
       const urlParameters: UrlParameters = {
-        mode: getUrlSearchParamsValue( 'mode' ),
-        width: getUrlSearchParamsValue( 'width' ),
-        height: getUrlSearchParamsValue( 'height' ),
+        mode: getUrlSearchParamsValue("mode"),
+        width: getUrlSearchParamsValue("width"),
+        height: getUrlSearchParamsValue("height")
       }
 
       const { mode, width, height } = urlParameters
-      notNil( mode ) && isModeValid( mode ) && this.dispatch( { type: 'app/UPDATE_MODE', mode } )
+      notNil(mode) &&
+        isModeValid(mode) &&
+        this.dispatch({ type: "app/UPDATE_MODE", mode })
     }
 
     messageListener = ({ data = {} }: any) => {
@@ -113,13 +118,14 @@ export default mapStateStyle({
           <div className={c.nav}>
             <TheNav />
           </div>
+
           {!isResultMode(mode) && (
             <div className={c.left} style={styles.left}>
               <TheLeft />
             </div>
           )}
 
-          {( visibleRight || isResultMode( mode ) ) && (
+          {(visibleRight || isResultMode(mode)) && (
             <div className={c.right} style={styles.right}>
               <TheRight />
             </div>
