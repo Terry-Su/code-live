@@ -16,3 +16,7 @@ export const OUTPUT_INDEX_HTML = resolve( OUTPUT, 'index.html' )
 
 export const ENTRY_STATIC = resolve( SRC, 'static' )
 export const OUTPUT_STATIC = OUTPUT
+
+
+export const ENTRY_CODE_VIEWER_COMPANION = resolve( ROOT, 'codeViewerCompanion/codeViewerCompanion.js' )
+export const OUTPUT_CODE_VIEWER_COMPANION = resolve( OUTPUT, 'codeViewerCompanion.js' )

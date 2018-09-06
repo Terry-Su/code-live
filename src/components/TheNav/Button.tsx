@@ -1,6 +1,7 @@
 import React from "react"
 import mapStateStyle from "../../utils/mapStateStyle";
 import BasicComponent from "../BasicComponent";
+import { MAIN_BLUE } from "../../constants/colors";
 
 export default mapStateStyle({
   container: {
@@ -8,7 +9,7 @@ export default mapStateStyle({
     padding: '0px 10px',
     cursor: 'pointer',
     '&:hover': {
-      color: '#4169e1!important'
+      color: `${ MAIN_BLUE }!important`
     }
   }
 })(

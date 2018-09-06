@@ -5,13 +5,14 @@ import { NAV_HEIGHT } from "../../constants/numbers";
 
 export default mapStateStyle({
   container: {
-    boxSizing: 'border-box',
     height: '100%',
-    padding: `${ NAV_HEIGHT + 10}px 10px 10px 10px`
   },
   textarea: {
+    boxSizing: 'border-box',
     width: '100%',
     height: '100%',
+    border: 'none',
+    padding: `10px`,
   }
 })(
   class CodeBox extends BasicComponent {

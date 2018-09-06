@@ -10,7 +10,8 @@ export default mapStateStyle({
   container: {
     display: 'flex',
     alignItems: 'center',
-    height: `${ NAV_HEIGHT }px`
+    height: `${ NAV_HEIGHT }px`,
+    background: 'white',
   }
 })(
   class TheNav extends BasicComponent {

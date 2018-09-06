@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import mapStateStyle from "../../utils/mapStateStyle"
 import BasicComponent from "../BasicComponent"
-import { BASIC_IFRAME_URL } from "../../constants/paths"
+import { BASIC_IFRAME_URL } from "../../constants/urls"
 
 export default mapStateStyle({
   container: {

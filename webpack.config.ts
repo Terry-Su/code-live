@@ -4,7 +4,7 @@ const webpack = require( 'webpack' )
 const CopyWebpackPlugin = require( "copy-webpack-plugin" )
 const CleanWebpackPlugin = require( 'clean-webpack-plugin' )
 import { __DEV__ } from "./server/global"
-import { OUTPUT_FILE_NAME, ENTRY, OUTPUT, ENTRY_INDEX_HTML, OUTPUT_INDEX_HTML, ENTRY_STATIC } from './server/constants'
+import { OUTPUT_FILE_NAME, ENTRY, OUTPUT, ENTRY_INDEX_HTML, OUTPUT_INDEX_HTML, ENTRY_STATIC, ENTRY_CODE_VIEWER_COMPANION, OUTPUT_CODE_VIEWER_COMPANION } from './server/constants'
 
 
 
@@ -36,6 +36,10 @@ const webpackClientConfig = {
         test: /\.css$/,
         use : [ "style-loader", "css-loader" ]
       },
+      {
+        test  : /\.(png|woff|woff2|eot|ttf|svg)$/,
+        loader: "url-loader?limit=100000000"
+      }
     ]
   },
   resolve: {
@@ -57,6 +61,9 @@ const webpackClientConfig = {
       {
         from: ENTRY_STATIC,
         to  : OUTPUT
+      },{
+        from: ENTRY_CODE_VIEWER_COMPANION,
+        to  : OUTPUT_CODE_VIEWER_COMPANION
       }
     ],
    ),

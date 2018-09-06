@@ -5,7 +5,7 @@ import mapStateStyle from "../utils/mapStateStyle"
 import "../styles/global.css"
 import BasicComponent from "./BasicComponent"
 import TheFoldButton from "./TheFoldButton"
-import { FOLD_BUTTON_WIDTH, FOLD_BUTTON_HEIGHT } from "../constants/numbers"
+import { FOLD_BUTTON_WIDTH, FOLD_BUTTON_HEIGHT, NAV_HEIGHT } from "../constants/numbers"
 import TheNav from "./TheNav/TheNav"
 import { notNil } from "../utils/lodash"
 import { isResultMode } from "../appUtils/getters"
@@ -16,11 +16,13 @@ import {
 
 export default mapStateStyle({
   container: {
+    boxSizing: 'border-box',
     display: "flex",
     height: "100%",
+    padding: `${ NAV_HEIGHT }px 0 0 0`,
     "&>div": {
       boxSizing: "border-box"
-    }
+    },
   },
   nav: {
     position: "absolute",
