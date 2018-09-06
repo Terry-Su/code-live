@@ -13,6 +13,7 @@ export default mapStateStyle({
     height: '100%',
     border: 'none',
     padding: `10px`,
+    resize: 'none',
   }
 })(
   class CodeBox extends BasicComponent {

@@ -4,7 +4,7 @@ import TheRoot from './components/TheRoot';
 import { hot } from 'react-hot-loader'
 import dva, { connect, Router } from "dva"
 import models from "./models/index"
-import mapValues from 'lodash/mapValues'
+import { mapValues } from './utils/lodash';
 
 
 const TheHotRoot = hot(module)(connect(props => props)(TheRoot))

@@ -5,6 +5,7 @@ const CopyWebpackPlugin = require( "copy-webpack-plugin" )
 const CleanWebpackPlugin = require( 'clean-webpack-plugin' )
 import { __DEV__ } from "./server/global"
 import { OUTPUT_FILE_NAME, ENTRY, OUTPUT, ENTRY_INDEX_HTML, OUTPUT_INDEX_HTML, ENTRY_STATIC, ENTRY_CODE_VIEWER_COMPANION, OUTPUT_CODE_VIEWER_COMPANION } from './server/constants'
+const BundleAnalyzerPlugin = require( "webpack-bundle-analyzer" ).BundleAnalyzerPlugin
 
 
 
@@ -72,7 +73,9 @@ const webpackClientConfig = {
      [
       new webpack.HotModuleReplacementPlugin()
     ] :
-    []    
+    [
+          new BundleAnalyzerPlugin()
+    ]    
   )
 }
 
