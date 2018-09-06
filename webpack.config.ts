@@ -15,8 +15,11 @@ const webpackClientConfig = {
   entry: {
     [ OUTPUT_FILE_NAME ]: [ 
       ENTRY,
+    ].concat(
+      __DEV__ ? [
       `webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000`,   
-    ]
+      ] : []
+    )
   },
   output: {
     path      : OUTPUT,
