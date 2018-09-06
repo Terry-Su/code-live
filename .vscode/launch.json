@@ -8,8 +8,8 @@
       "type": "chrome",
       "request": "launch",
       "name": "Launch Chrome against localhost",
-      // "url": "http://localhost:3601",
-      "url": "http://localhost:3601/test/index.html",
+      // "url": "http://localhost:3602",
+      "url": "http://localhost:3602/test/index.html",
       "webRoot": "${workspaceFolder}"
     }
   ]

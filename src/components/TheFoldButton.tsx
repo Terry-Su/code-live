@@ -17,6 +17,10 @@ export default mapStateStyle( {
     borderRadius: `${ FOLD_BUTTON_WIDTH }px`,
     border: `1px solid ${MAIN_BLUE}`,
     background: 'rgba(255,255,255,0.8)',
+    opacity: '0.3',
+    "&:hover": {
+      opacity: '1',
+    }
   },
   image: {
     width: `${FOLD_BUTTON_IMAGE_WIDTH}px`,
