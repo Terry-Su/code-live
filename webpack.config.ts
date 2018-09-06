@@ -74,7 +74,7 @@ const webpackClientConfig = {
       new webpack.HotModuleReplacementPlugin()
     ] :
     [
-          new BundleAnalyzerPlugin()
+          // new BundleAnalyzerPlugin()
     ]    
   )
 }

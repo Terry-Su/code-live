@@ -1,5 +1,9 @@
+/* === Config  === */
 const FETCH_SCRIPT_URL = "https://terry-su.github.io/CDN/utils/fetch.js"
-const CODE_VIEWER_IFRAME_URL = "./index.html"
+const CODE_VIEWER_IFRAME_URL = "/index.html"
+const BASIC_IFRAME_URL = "/basicIframe.html"
+/* === Config === */
+
 
 const HTML_URL = "./template.html"
 const CSS_URL = "./index.css"
@@ -56,7 +60,8 @@ function addIframe() {
       const data = {
         tsHtml,
         tsCss,
-        tsJavascript
+        tsJavascript,
+        BASIC_IFRAME_URL
       }
       iframe.contentWindow.postMessage( data, "*" )
     }

@@ -9,6 +9,7 @@ export default {
     css         : '',
     javascript  : '',
 
+
     /**
      * Switch boolean symbol to reload iframe in result box 
      */
