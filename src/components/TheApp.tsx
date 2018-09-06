@@ -8,11 +8,13 @@ import TheFoldButton from "./TheFoldButton"
 import { FOLD_BUTTON_WIDTH, FOLD_BUTTON_HEIGHT, NAV_HEIGHT } from "../constants/numbers"
 import TheNav from "./TheNav/TheNav"
 import { notNil } from "../utils/lodash"
-import { isResultMode } from "../appUtils/getters"
+import { isResultMode, isModeValid } from "../appUtils/getters"
 import {
   BASIC_IFRAME_CUSTOM_EVENT,
   BASIC_IFRAME_UPDATE_DATA_FN
 } from "../constants/names"
+import { getUrlSearchParamsValue } from "../utils/js";
+import { modes } from "../constants/types";
 
 export default mapStateStyle({
   container: {
@@ -44,6 +46,8 @@ export default mapStateStyle({
 })(
   class TheApp extends BasicComponent {
     componentDidMount() {
+      this.initializeByUrlParamaters()
+
       window.removeEventListener("message", this.messageListener)
       window.addEventListener("message", this.messageListener)
 
@@ -55,6 +59,17 @@ export default mapStateStyle({
         BASIC_IFRAME_CUSTOM_EVENT,
         this.basicIframeCustomEventListener
       )
+    }
+
+    initializeByUrlParamaters() {
+      const urlParameters: UrlParameters = {
+        mode: getUrlSearchParamsValue( 'mode' ),
+        width: getUrlSearchParamsValue( 'width' ),
+        height: getUrlSearchParamsValue( 'height' ),
+      }
+
+      const { mode, width, height } = urlParameters
+      notNil( mode ) && isModeValid( mode ) && this.dispatch( { type: 'app/UPDATE_MODE', mode } )
     }
 
     messageListener = ({ data = {} }: any) => {
@@ -87,7 +102,7 @@ export default mapStateStyle({
         },
         foldButton: {
           left: visibleRight ? "50%" : "unset",
-          right: visibleRight ? "unset" : "0",
+          right: visibleRight ? "unset" : "10px",
           marginLeft: visibleRight ? `-${FOLD_BUTTON_WIDTH / 2}px` : "unset"
         }
       }

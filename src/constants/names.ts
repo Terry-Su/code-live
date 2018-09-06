@@ -1,7 +1,7 @@
-export const HTML = 'HTML'
-export const CSS = 'CSS'
-export const JAVASCRIPT = 'JAVASCRIPT'
-export const RESULT = 'RESULT'
+export const HTML = 'html'
+export const CSS = 'css'
+export const JAVASCRIPT = 'js'
+export const RESULT = 'result'
 
 
 

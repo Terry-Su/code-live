@@ -1,18 +1,19 @@
 const FETCH_SCRIPT_URL = "https://terry-su.github.io/CDN/utils/fetch.js"
 const CODE_VIEWER_IFRAME_URL = "/index.html"
 
-
 const HTML_URL = "./template.html"
 const CSS_URL = "./index.css"
 const JAVASCRIPT_URL = "./index.js"
 
 
-const STYLE_TEXT = `html,body,iframe{ width:100%;height:100%;margin:0;padding:0; overflow: hidden; } iframe{width:100%;height:100%;border:none;}`
+init()
 
-let tsHtml, tsCss, tsJavascript
-
-applyStyle( STYLE_TEXT )
-loadScript( FETCH_SCRIPT_URL, main )
+/* Bussiness Logic */
+function init() {
+  const styleText = getStyleText()
+  applyStyle( styleText )
+  loadScript( FETCH_SCRIPT_URL, main )
+}
 
 function main() {
   iframe = addIframe()
@@ -20,7 +21,7 @@ function main() {
 
 function addIframe() {
   const iframe = document.createElement( "iframe" )
-  iframe.src = CODE_VIEWER_IFRAME_URL
+  iframe.src = CODE_VIEWER_IFRAME_URL + location.search
   iframe.setAttribute( "frameBorder", 0 )
   iframe.onload = onIframeLoad
   document.body.appendChild( iframe )
@@ -62,6 +63,22 @@ function addIframe() {
   }
 }
 
+function getStyleText() {
+  let { width , height } = getUrlParameters()
+  width = notNil( width ) ? width : '100%'
+  height = notNil( height ) ? height : '100%'
+  return `html,body,iframe{ width:${width};height:${ height };margin:0;padding:0; overflow: hidden; } iframe{width:100%;height:100%;border:none;}`
+}
+
+function getUrlParameters() {
+  return {
+    width : getUrlSearchParamsValue( 'width' ),    
+    height: getUrlSearchParamsValue( 'height' ),    
+  }
+}
+
+
+/* Utils */
 function fetchText( url ) {
   return fetch( url ).then( function( response ) {
     try {
@@ -84,4 +101,20 @@ function applyStyle( styleText ) {
   style.type = "text/css"
   style.appendChild( document.createTextNode( styleText ) )
   document.head.appendChild( style )
+}
+
+function getUrlSearchParamsValue( key ) {
+  const url = new URL( location.href )
+  if ( url && url.searchParams ) {
+    return url.searchParams.get( key )
+  }
+}
+
+
+function isNil( value ) {
+  return value === null || typeof value === 'undefined'
+}
+
+function notNil( value ) {
+  return !isNil( value )
 }

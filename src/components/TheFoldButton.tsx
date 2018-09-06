@@ -16,7 +16,7 @@ export default mapStateStyle( {
     cursor: 'pointer',
     borderRadius: `${ FOLD_BUTTON_WIDTH }px`,
     border: `1px solid ${MAIN_BLUE}`,
-    background: '#fff',
+    background: 'rgba(255,255,255,0.8)',
   },
   image: {
     width: `${FOLD_BUTTON_IMAGE_WIDTH}px`,
