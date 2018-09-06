@@ -8,10 +8,14 @@ import { NAV_HEIGHT } from "../../constants/numbers";
 
 export default mapStateStyle({
   container: {
+    boxSizing: 'border-box',
     display: 'flex',
     alignItems: 'center',
+    width: '100%',
     height: `${ NAV_HEIGHT }px`,
     background: 'white',
+    border: '1px solid #ddd',
+    borderBottom: 'none',
   }
 })(
   class TheNav extends BasicComponent {

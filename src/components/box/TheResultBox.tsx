@@ -5,7 +5,8 @@ import { BASIC_IFRAME_URL } from "../../constants/urls"
 
 export default mapStateStyle({
   container: {
-    height: "100%"
+    height: "100%",
+    background: '#fff'
   }
 })(
   class TheResultBox extends BasicComponent {

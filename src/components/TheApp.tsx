@@ -29,10 +29,11 @@ export default mapStateStyle({
   nav: {
     position: "absolute",
     left: "0",
-    top: "0"
+    top: "0",
+    // width: '100%',
   },
   left: {
-    border: "1px solid #ddd"
+    border: "1px solid #ddd",
   },
   right: {
     width: "50%",
@@ -41,7 +42,7 @@ export default mapStateStyle({
   foldButton: {
     position: "absolute",
     top: "50%",
-    marginTop: `-${FOLD_BUTTON_HEIGHT / 2}px`
+    marginTop: `-${( FOLD_BUTTON_HEIGHT - NAV_HEIGHT ) / 2}px`
   }
 })(
   class TheApp extends BasicComponent {
@@ -118,7 +119,7 @@ export default mapStateStyle({
             </div>
           )}
 
-          {visibleRight && (
+          {( visibleRight || isResultMode( mode ) ) && (
             <div className={c.right} style={styles.right}>
               <TheRight />
             </div>
