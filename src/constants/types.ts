@@ -1,6 +1,6 @@
 import { HTML, CSS, JAVASCRIPT, RESULT } from "./names"
 
-export const modes = {
+export const MODES = {
   HTML,
   CSS,
   JAVASCRIPT,

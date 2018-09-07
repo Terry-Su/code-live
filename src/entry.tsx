@@ -5,6 +5,8 @@ import { hot } from 'react-hot-loader'
 import dva, { connect, Router } from "dva"
 import models from "./models/index"
 import { mapValues } from './utils/lodash';
+import { ACE_URL } from './constants/urls';
+import { loadScript } from './utils/js';
 
 
 const TheHotRoot = hot(module)(connect(props => props)(TheRoot))
@@ -17,3 +19,5 @@ mapValues(models, model => app.model(model))
 app.router(() => <TheHotRoot />)
 
 app.start("#app")
+
+

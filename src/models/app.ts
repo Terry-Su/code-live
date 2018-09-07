@@ -1,9 +1,9 @@
-import { modes } from "../constants/types"
+import { MODES } from "../constants/types"
 
 export default {
   namespace: "app",
   state    : {
-    mode: modes.HTML,
+    mode: MODES.HTML,
 
     visibleRight: true,
 
@@ -17,6 +17,9 @@ export default {
      * Switch boolean symbol to reload iframe in result box 
      */
     reloadIframeSymbol: true,
+
+
+    aceLoaded: false,
   },
   reducers: {
     UPDATE_MODE          : ( state, { mode } ) => ( { ...state, mode } ),
@@ -26,7 +29,8 @@ export default {
     UPDATE_HTML          : ( state, { html } ) => ( { ...state, html } ),
     UPDATE_CSS           : ( state, { css } ) => ( { ...state, css } ),
     UPDATE_JAVASCRIPT    : ( state, { javascript } ) => ( { ...state, javascript } ),
-    REFRESH_IFRAME_SYMBOL: state => ( { ...state, reloadIframeSymbol: !state.reloadIframeSymbol } )
+    REFRESH_IFRAME_SYMBOL: state => ( { ...state, reloadIframeSymbol: !state.reloadIframeSymbol } ),
+    ACE_LOADED           : state => ( { ...state, aceLoaded: true } )
   },
   effects: {}
 }

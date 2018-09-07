@@ -5,6 +5,7 @@ import TheHTMLBox from "./box/TheHTMLBox";
 import TheCSSBox from "./box/TheCSSBox";
 import TheJavaScriptBox from "./box/TheJavaScriptBox";
 import BasicComponent from "./BasicComponent";
+import Display from "./tool/Display";
 
 export default mapStateStyle({
   container: {
@@ -16,13 +17,19 @@ export default mapStateStyle({
       const { mode, c } = this
       return <div  className={c.container}>
         {
-          isHTMLMode( mode ) && <TheHTMLBox />
+          <Display show={ isHTMLMode( mode ) }>
+            <TheHTMLBox />
+          </Display>
         }
         {
-          isCSSMode( mode ) && <TheCSSBox />
+          <Display show={ isCSSMode( mode ) }>
+            <TheCSSBox />
+          </Display>
         }
         {
-          isJavaScriptMode( mode ) && <TheJavaScriptBox />
+          <Display show={ isJavaScriptMode( mode ) }>
+            <TheJavaScriptBox />
+          </Display>
         }
       </div>
     }

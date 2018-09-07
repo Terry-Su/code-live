@@ -3,8 +3,10 @@ import mapStateStyle from "../../utils/mapStateStyle";
 import BasicComponent from "../BasicComponent";
 import Button from "./Button";
 import { isHTMLMode, isCSSMode, isJavaScriptMode, isResultMode } from "../../appUtils/getters";
-import { modes } from "../../constants/types";
+import { MODES } from "../../constants/types";
 import { NAV_HEIGHT } from "../../constants/numbers";
+import { loadScript } from "../../utils/js";
+import { ACE_URL } from "../../constants/urls";
 
 export default mapStateStyle({
   container: {
@@ -24,14 +26,14 @@ export default mapStateStyle({
     }
     onResultClick = () => {
       this.REFRESH_IFRAME_SYMBOL()
-      this.updateMode( modes.RESULT )
+      this.updateMode( MODES.RESULT )
     }
     render() {
       const { c, mode, updateMode } = this
       return <div className={ c.container }>
-        <Button active={ isHTMLMode( mode ) } onClick={ () => this.updateMode( modes.HTML ) }>HTML</Button>
-        <Button active={ isCSSMode( mode ) } onClick={ () => this.updateMode( modes.CSS ) }>CSS</Button>
-        <Button active={ isJavaScriptMode( mode ) } onClick={ () => this.updateMode( modes.JAVASCRIPT ) }>JavaScript</Button>
+        <Button active={ isHTMLMode( mode ) } onClick={ () => this.updateMode( MODES.HTML ) }>HTML</Button>
+        <Button active={ isCSSMode( mode ) } onClick={ () => this.updateMode( MODES.CSS ) }>CSS</Button>
+        <Button active={ isJavaScriptMode( mode ) } onClick={ () => this.updateMode( MODES.JAVASCRIPT ) }>JS</Button>
         <Button active={ isResultMode( mode ) } onClick={ this.onResultClick }>Result</Button>
       </div>
     }

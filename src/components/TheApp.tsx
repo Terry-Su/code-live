@@ -17,8 +17,9 @@ import {
   BASIC_IFRAME_CUSTOM_EVENT,
   BASIC_IFRAME_UPDATE_DATA_FN
 } from "../constants/names"
-import { getUrlSearchParamsValue } from "../utils/js"
-import { modes } from "../constants/types"
+import { getUrlSearchParamsValue, loadScript } from "../utils/js"
+import { MODES } from "../constants/types"
+import { ACE_URL } from "../constants/urls";
 
 export default mapStateStyle({
   container: {
@@ -50,6 +51,8 @@ export default mapStateStyle({
 })(
   class TheApp extends BasicComponent {
     componentDidMount() {
+      const { dispatch } = this.props
+      
       this.initializeByUrlParamaters()
 
       window.removeEventListener("message", this.messageListener)
@@ -63,6 +66,10 @@ export default mapStateStyle({
         BASIC_IFRAME_CUSTOM_EVENT,
         this.basicIframeCustomEventListener
       )
+
+      // loadScript( ACE_URL, () => {
+      //   dispatch( { type: 'app/ACE_LOADED' } )
+      // } )
     }
 
     initializeByUrlParamaters() {
