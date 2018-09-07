@@ -53,6 +53,7 @@ export default mapStateStyle({
   foldButton: {
     position: "absolute",
     top: "50%",
+    zIndex: 10,
     marginTop: `-${(FOLD_BUTTON_HEIGHT - NAV_HEIGHT) / 2}px`
   }
 })(
