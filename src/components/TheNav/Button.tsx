@@ -14,21 +14,31 @@ export default mapStateStyle({
   }
 })(
   class Button extends BasicComponent {
+    props: Props
+
     render() {
       const { c } = this
-      const { active=false, empty= true } = this.props
+      const { active=false, empty= false, onClick } = this.props
       const style = {
         color: active ?
          '#4169e1' : 
          (
           empty ?
           '#aaa':
-          'unset'
+          '#666'
          ),
       }
-      return <span className={c.container} style={style} onClick={ this.props.onClick }>
+      return <span className={c.container} style={style} onClick={ onClick }>
           { this.props.children || 'Button' }
       </span>
     }
   }
 )
+
+interface Props {
+  active: boolean,
+  empty: boolean,
+  children: any,
+
+  onClick: any
+}

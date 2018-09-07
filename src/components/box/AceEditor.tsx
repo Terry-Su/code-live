@@ -3,6 +3,7 @@ import mapStateStyle from "../../utils/mapStateStyle"
 import BasicComponent from "../BasicComponent"
 import { notNil } from "../../utils/lodash"
 import { MODES } from "../../constants/types";
+import { BORDER_RADIUS } from "../../constants/values";
 
 export default mapStateStyle({
   container: {
@@ -12,7 +13,8 @@ export default mapStateStyle({
     height: "100%",
     border: "none",
     padding: `10px`,
-    resize: "none"
+    // borderTopLeftRadius: `${ BORDER_RADIUS }`,
+    borderBottomLeftRadius: `${ BORDER_RADIUS }`,
   }
 })(
   class AceEditor extends BasicComponent {

@@ -8,7 +8,7 @@ import TheFoldButton from "./TheFoldButton"
 import {
   FOLD_BUTTON_WIDTH,
   FOLD_BUTTON_HEIGHT,
-  NAV_HEIGHT
+  NAV_HEIGHT,
 } from "../constants/numbers"
 import TheNav from "./TheNav/TheNav"
 import { notNil } from "../utils/lodash"
@@ -20,6 +20,7 @@ import {
 import { getUrlSearchParamsValue, loadScript } from "../utils/js"
 import { MODES } from "../constants/types"
 import { ACE_URL } from "../constants/urls";
+import { BORDER_RADIUS } from "../constants/values";
 
 export default mapStateStyle({
   container: {
@@ -37,11 +38,15 @@ export default mapStateStyle({
   left: {
     boxSizing: "border-box",
     border: "1px solid #ddd",
+    // borderTopLeftRadius: `${ BORDER_RADIUS }`,
+    borderBottomLeftRadius: `${ BORDER_RADIUS }`,
   },
   right: {
     boxSizing: "border-box",
     width: "50%",
-    border: "1px solid #ddd"
+    border: "1px solid #ddd",
+    borderTopRightRadius: `${ BORDER_RADIUS }`,
+    borderBottomRightRadius: `${ BORDER_RADIUS }`,
   },
   foldButton: {
     position: "absolute",

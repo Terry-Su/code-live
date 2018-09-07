@@ -7,6 +7,7 @@ import { MODES } from "../../constants/types";
 import { NAV_HEIGHT } from "../../constants/numbers";
 import { loadScript } from "../../utils/js";
 import { ACE_URL } from "../../constants/urls";
+import { BORDER_RADIUS } from "../../constants/values";
 
 export default mapStateStyle({
   container: {
@@ -18,6 +19,8 @@ export default mapStateStyle({
     background: 'white',
     border: '1px solid #ddd',
     borderBottom: 'none',
+    borderTopLeftRadius: `${ BORDER_RADIUS }`,
+    borderTopRightRadius: `${ BORDER_RADIUS }`,
   }
 })(
   class TheNav extends BasicComponent {
@@ -29,11 +32,11 @@ export default mapStateStyle({
       this.updateMode( MODES.RESULT )
     }
     render() {
-      const { c, mode, updateMode } = this
+      const { c, mode, updateMode, emptyHTML, emptyCSS, emptyJavaScript } = this
       return <div className={ c.container }>
-        <Button active={ isHTMLMode( mode ) } onClick={ () => this.updateMode( MODES.HTML ) }>HTML</Button>
-        <Button active={ isCSSMode( mode ) } onClick={ () => this.updateMode( MODES.CSS ) }>CSS</Button>
-        <Button active={ isJavaScriptMode( mode ) } onClick={ () => this.updateMode( MODES.JAVASCRIPT ) }>JS</Button>
+        <Button active={ isHTMLMode( mode ) } empty={ emptyHTML } onClick={ () => this.updateMode( MODES.HTML ) }>HTML</Button>
+        <Button active={ isCSSMode( mode ) } empty={ emptyCSS } onClick={ () => this.updateMode( MODES.CSS ) }>CSS</Button>
+        <Button active={ isJavaScriptMode( mode ) } empty={ emptyJavaScript } onClick={ () => this.updateMode( MODES.JAVASCRIPT ) }>JS</Button>
         <Button active={ isResultMode( mode ) } onClick={ this.onResultClick }>Result</Button>
       </div>
     }
