@@ -71,7 +71,7 @@ function getStyleText() {
   let { width , height } = getUrlParameters()
   width = notNil( width ) ? width : '100%'
   height = notNil( height ) ? height : '100%'
-  return `html,body{ width:${width};height:${ height };margin:0;padding:0;} iframe{width:100%;height:100%;border:none;}`
+  return `html,body{ width:${width};height:${ height };margin:0;padding:0;} iframe{display:block;width:100%;height:100%;}`
 }
 
 function getUrlParameters() {

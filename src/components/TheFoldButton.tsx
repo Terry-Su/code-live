@@ -39,9 +39,9 @@ export default mapStateStyle( {
           transform: visibleRight ?  'unset': 'rotate(180deg)'
         }
       }
-      return <span className={c.container} onClick={ this.onClick }>
+      return <div className={c.container} onClick={ this.onClick }>
         <img className={c.image} style={ styles.image } src={ FOLD_TO_RIGHT } alt="Fold"/>
-      </span>
+      </div>
     }
   }
 )

@@ -9,6 +9,7 @@ export default mapStateStyle({
   },
   textarea: {
     boxSizing: 'border-box',
+    display: 'block',
     width: '100%',
     height: '100%',
     border: 'none',
