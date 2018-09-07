@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import mapStateStyle from "../../utils/mapStateStyle";
-import AceEditor from "./AceEditor";
+import CodeBox from "./CodeBox";
 import BasicComponent from "../BasicComponent";
 import { JAVASCRIPT } from "../../constants/names";
 import { MODES } from "../../constants/types";
@@ -13,10 +13,10 @@ export default mapStateStyle()(
     }
     render() {
       const { javascript } = this
-      return <AceEditor 
+      return <CodeBox 
       value={ javascript }
       mode={ MODES.JAVASCRIPT }
-      onChange={ this.onChange }></AceEditor>
+      onChange={ this.onChange }></CodeBox>
     }
   }
 )

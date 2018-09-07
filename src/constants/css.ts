@@ -1,0 +1,1 @@
+export const DISPLAY_NONE_OBECT = { display: 'none' }

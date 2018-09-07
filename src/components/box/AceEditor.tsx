@@ -63,13 +63,12 @@ export default mapStateStyle({
        // Theme
        editor.setTheme("ace/theme/chrome");
 
+      /* Other Config */
       // Syntax validation
       editor.session.setOption("useWorker", false);
 
-     
-
-
-
+      // Line numbers bar
+      editor.renderer.setShowGutter(false);
     }
     componentDidUpdate() {
       const { value } = this.props

@@ -6,15 +6,17 @@ import AceEditor from "./AceEditor";
 
 export default mapStateStyle({
   container: {
+    boxSizing: 'border-box',
     height: '100%',
+    padding: '10px 10px',
+    background: 'white',
   },
 })(
   class CodeBox extends BasicComponent {
     render() {
       const { c } = this
-      const { value, onChange } = this.props
       return <div className={ c.container }>
-        <AceEditor onChange={ onChange } value={ value }/>
+        <AceEditor { ...this.props }/>
       </div>
     }
   }

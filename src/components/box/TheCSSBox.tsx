@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import mapStateStyle from "../../utils/mapStateStyle";
-import AceEditor from "./AceEditor";
+import CodeBox from "./CodeBox";
 import BasicComponent from "../BasicComponent";
 import { MODES } from "../../constants/types";
 
@@ -13,8 +13,8 @@ export default mapStateStyle()(
     }
     render() {
       const { css } = this
-      return <AceEditor 
-      value={ css } mode={ MODES.CSS } onChange={ this.onChange }></AceEditor>
+      return <CodeBox 
+      value={ css } mode={ MODES.CSS } onChange={ this.onChange }></CodeBox>
     }
   }
 )

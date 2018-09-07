@@ -8,26 +8,27 @@ import TheFoldButton from "./TheFoldButton"
 import {
   FOLD_BUTTON_WIDTH,
   FOLD_BUTTON_HEIGHT,
-  NAV_HEIGHT,
+  NAV_HEIGHT
 } from "../constants/numbers"
 import TheNav from "./TheNav/TheNav"
 import { notNil } from "../utils/lodash"
-import { isResultMode, isModeValid } from "../appUtils/getters"
+import { isResultMode, isModeValid, getStyleDisplayObject } from "../appUtils/getters"
 import {
   BASIC_IFRAME_CUSTOM_EVENT,
   BASIC_IFRAME_UPDATE_DATA_FN
 } from "../constants/names"
 import { getUrlSearchParamsValue, loadScript } from "../utils/js"
 import { MODES } from "../constants/types"
-import { ACE_URL } from "../constants/urls";
-import { BORDER_RADIUS } from "../constants/values";
+import { ACE_URL } from "../constants/urls"
+import { BORDER_RADIUS } from "../constants/values"
+import Display from "./tool/Display"
 
 export default mapStateStyle({
   container: {
     boxSizing: "border-box",
     display: "flex",
     height: "100%",
-    padding: `${ NAV_HEIGHT }px 0 0 0`,
+    padding: `${NAV_HEIGHT}px 0 0 0`
   },
   nav: {
     position: "absolute",
@@ -38,15 +39,16 @@ export default mapStateStyle({
   left: {
     boxSizing: "border-box",
     border: "1px solid #ddd",
+    height: '100%',
     // borderTopLeftRadius: `${ BORDER_RADIUS }`,
-    borderBottomLeftRadius: `${ BORDER_RADIUS }`,
+    borderBottomLeftRadius: `${BORDER_RADIUS}`
   },
   right: {
     boxSizing: "border-box",
     width: "50%",
     border: "1px solid #ddd",
-    borderTopRightRadius: `${ BORDER_RADIUS }`,
-    borderBottomRightRadius: `${ BORDER_RADIUS }`,
+    borderTopRightRadius: `${BORDER_RADIUS}`,
+    borderBottomRightRadius: `${BORDER_RADIUS}`
   },
   foldButton: {
     position: "absolute",
@@ -57,7 +59,7 @@ export default mapStateStyle({
   class TheApp extends BasicComponent {
     componentDidMount() {
       const { dispatch } = this.props
-      
+
       this.initializeByUrlParamaters()
 
       window.removeEventListener("message", this.messageListener)
@@ -113,10 +115,12 @@ export default mapStateStyle({
 
       const styles = {
         left: {
-          width: visibleRight ? "50%" : "100%"
+          width: visibleRight ? "50%" : "100%",
+          ...getStyleDisplayObject( !isResultMode(mode) ),
         },
         right: {
-          width: !isResultMode(mode) ? "50%" : "100%"
+          width: !isResultMode(mode) ? "50%" : "100%",
+          ...getStyleDisplayObject( visibleRight || isResultMode(mode) ),
         },
         foldButton: {
           left: visibleRight ? "50%" : "unset",
@@ -131,17 +135,13 @@ export default mapStateStyle({
             <TheNav />
           </div>
 
-          {!isResultMode(mode) && (
-            <div className={c.left} style={styles.left}>
+          <div className={c.left} style={styles.left}>
               <TheLeft />
-            </div>
-          )}
+          </div>
 
-          {(visibleRight || isResultMode(mode)) && (
-            <div className={c.right} style={styles.right}>
+          <div className={c.right} style={styles.right}>
               <TheRight />
-            </div>
-          )}
+          </div>
 
           {!isResultMode(mode) && (
             <span className={c.foldButton} style={styles.foldButton}>
