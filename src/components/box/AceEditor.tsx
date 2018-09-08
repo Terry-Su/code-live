@@ -78,9 +78,6 @@ export default mapStateStyle({
     componentDidUpdate() {
       const { value } = this.props
       const { aceValue } = this
-      value === 'test' && console.log(
-        notNil( value ) && notNil( aceValue ) && aceValue !== value
-      )
 
       if (notNil( value ) && notNil( aceValue ) && aceValue !== value) {
         this.silent = true

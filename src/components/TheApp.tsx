@@ -19,7 +19,6 @@ import {
 } from "../constants/names"
 import { getUrlSearchParamsValue, loadScript } from "../utils/js"
 import { MODES } from "../constants/types"
-import { ACE_URL } from "../constants/urls"
 import { BORDER_RADIUS } from "../constants/values"
 import Display from "./tool/Display"
 
@@ -76,12 +75,6 @@ export default mapStateStyle({
         BASIC_IFRAME_CUSTOM_EVENT,
         this.basicIframeCustomEventListener
       )
-
-      // this.initializeByUrlParamaters()
-
-      // loadScript( ACE_URL, () => {
-      //   dispatch( { type: 'app/ACE_LOADED' } )
-      // } )
     }
 
     initializeByUrlParamaters() {

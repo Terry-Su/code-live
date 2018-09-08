@@ -5,7 +5,6 @@ import { hot } from 'react-hot-loader'
 import dva, { connect, Router } from "dva"
 import models from "./models/index"
 import { mapValues } from './utils/lodash';
-import { ACE_URL } from './constants/urls';
 import { loadScript } from './utils/js';
 
 

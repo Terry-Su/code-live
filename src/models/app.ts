@@ -7,9 +7,9 @@ export default {
 
     visibleRight: true,
 
-    html      : '',
-    css       : '',
-    javascript: '',
+    html      : null,
+    css       : null,
+    javascript: null,
 
 
 

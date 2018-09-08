@@ -6,7 +6,6 @@ import { isHTMLMode, isCSSMode, isJavaScriptMode, isResultMode } from "../../app
 import { MODES } from "../../constants/types";
 import { NAV_HEIGHT } from "../../constants/numbers";
 import { loadScript } from "../../utils/js";
-import { ACE_URL } from "../../constants/urls";
 import { BORDER_RADIUS } from "../../constants/values";
 
 export default mapStateStyle({

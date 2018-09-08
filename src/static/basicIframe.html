@@ -7,36 +7,58 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <script>
-    /**
-     * When this html is loaded, it would call parent 
-     * to pass the text of html, css javascript by 
-     * callbacks('updateData')
-    */
-    function init() {
-      const myEvent = new CustomEvent('BASIC_IFRAME_CUSTOM_EVENT', {
-        detail: {
-          updateData
-        }
-      })
-
-      window.parent.dispatchEvent(myEvent)
-
-      function updateData( { html, css, javascript } ) {
-        const htmlContainer = document.body
-        const cssContainer = document.getElementById('css')
-        const javascriptContainer = document.getElementById('javascript')
-
-        htmlContainer.innerHTML = html
-        cssContainer.innerHTML = css
-        javascriptContainer.innerHTML = javascript
+    const myEvent = new CustomEvent('BASIC_IFRAME_CUSTOM_EVENT', {
+      detail: {
+        updateData
       }
+    })
+
+    window.parent.dispatchEvent(myEvent)
+
+    function updateData({ html, css, javascript }) {
+      if ( isNil( html ) && isNil( css ) && isNil( javascript ) ) {
+        return
+      }
+
+      const cssStr = '\<style\>' + css + '\<\/style\>'
+      const jsStr = '\<script\>' + javascript + '\<\/script\>'
+      const domStr = html + '\n' + cssStr + '\n' + jsStr
+
+      document.write(html)
+      applyStyle(css)
+      document.addEventListener("DOMContentLoaded", function (event) {
+        applyScript(javascript)
+      })
     }
+
+    
+
+
+    function applyScript(content, callback) {
+      const script = document.createElement("script")
+      script.appendChild(document.createTextNode(content))
+      script.onload = callback || function () { }
+      document.head.appendChild(script)
+    }
+
+    function applyStyle(styleText) {
+      const style = document.createElement("style")
+      style.type = "text/css"
+      style.appendChild(document.createTextNode(styleText))
+      document.head.appendChild(style)
+    }
+
+    function isNil( value ) {
+      return value == null
+    }
+
   </script>
-  <style id="css"></style>
-  <script id="javascript"></script>
 </head>
 
-<body onload="init()"></body>
+<body>
+  <!-- <script id="javascript"></script> -->
+</body>
+
 
 
 </html>
