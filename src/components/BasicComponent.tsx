@@ -1,6 +1,6 @@
 import React, { Component } from "react"
-import { notNil } from "../utils/lodash";
-import { emptyString } from "../utils/js";
+import { notNil } from "../utils/lodash"
+import { emptyString } from "../utils/js"
 
 export default class BasicComponent extends Component<any, any> {
   mutations: any
@@ -37,11 +37,21 @@ export default class BasicComponent extends Component<any, any> {
     return this.app.javascript
   }
 
+  get defaultHTML() {
+    return this.app.defaultHTML
+  }
+
+  get defaultCSS() {
+    return this.app.defaultCSS
+  }
+
+  get defaultJS() {
+    return this.app.defaultJS
+  }
+
   get reloadIframeSymbol() {
     return this.app.reloadIframeSymbol
   }
-
-
 
   /* Getters */
   get emptyHTML() {
@@ -55,10 +65,14 @@ export default class BasicComponent extends Component<any, any> {
   get emptyJavaScript() {
     return emptyString( this.javascript )
   }
-  
- 
+
+  get hasOneOfThree() {
+    const { defaultHTML, defaultCSS, defaultJS } = this
+    return notNil( defaultHTML ) || notNil( defaultCSS ) || notNil( defaultJS )
+  }
+
   /* Mutations */
   REFRESH_IFRAME_SYMBOL() {
-    this.dispatch( { type: 'app/REFRESH_IFRAME_SYMBOL' } )
+    this.dispatch( { type: "app/REFRESH_IFRAME_SYMBOL" } )
   }
 }

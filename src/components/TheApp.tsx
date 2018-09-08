@@ -11,8 +11,13 @@ import {
   NAV_HEIGHT
 } from "../constants/numbers"
 import TheNav from "./TheNav/TheNav"
-import { notNil } from "../utils/lodash"
-import { isResultMode, isModeValid, getStyleDisplayObject } from "../appUtils/getters"
+import { notNil, isNil } from "../utils/lodash"
+import {
+  isResultMode,
+  isModeValid,
+  getStyleDisplayObject,
+  getTextUrlPromiseSingleArray
+} from "../appUtils/getters"
 import {
   BASIC_IFRAME_CUSTOM_EVENT,
   BASIC_IFRAME_UPDATE_DATA_FN
@@ -21,6 +26,7 @@ import { getUrlSearchParamsValue, loadScript } from "../utils/js"
 import { MODES } from "../constants/types"
 import { BORDER_RADIUS } from "../constants/values"
 import Display from "./tool/Display"
+import { fetchText } from "../utils/fetchData"
 
 export default mapStateStyle({
   container: {
@@ -38,7 +44,7 @@ export default mapStateStyle({
   left: {
     boxSizing: "border-box",
     border: "1px solid #ddd",
-    height: '100%',
+    height: "100%",
     // borderTopLeftRadius: `${ BORDER_RADIUS }`,
     borderBottomLeftRadius: `${BORDER_RADIUS}`
   },
@@ -57,11 +63,31 @@ export default mapStateStyle({
   }
 })(
   class TheApp extends BasicComponent {
-    componentDidMount() {
+    async componentDidMount() {
       const { dispatch } = this.props
 
-      dispatch( {type: 'app/UPDATE_MODE', mode: MODES.HTML } )
-      this.initializeByUrlParamaters()
+      dispatch({ type: "app/UPDATE_MODE", mode: MODES.HTML })
+      const data = await this.initializeByUrlParamaters()
+
+      const [defaultHTML, defaultCSS, defaultJS] = data
+
+      notNil(defaultHTML) &&
+        dispatch({ type: "app/UPDATE_DEFAULT_HTML", defaultHTML })
+      notNil(defaultCSS) &&
+        dispatch({ type: "app/UPDATE_DEFAULT_CSS", defaultCSS })
+      notNil(defaultJS) &&
+        dispatch({ type: "app/UPDATE_DEFAULT_JS", defaultJS })
+
+      if (this.hasOneOfThree) {
+        notNil(defaultHTML) &&
+          dispatch({ type: "app/UPDATE_HTML", html: defaultHTML })
+        notNil(defaultCSS) && dispatch({ type: "app/UPDATE_CSS", css: defaultCSS })
+        notNil(defaultJS) &&
+          dispatch({ type: "app/UPDATE_JAVASCRIPT", javascript: defaultJS })
+
+        this.REFRESH_IFRAME_SYMBOL()
+      }
+
 
 
       window.removeEventListener("message", this.messageListener)
@@ -81,23 +107,49 @@ export default mapStateStyle({
       const urlParameters: UrlParameters = {
         mode: getUrlSearchParamsValue("mode"),
         width: getUrlSearchParamsValue("width"),
-        height: getUrlSearchParamsValue("height")
+        height: getUrlSearchParamsValue("height"),
+        defaultHTMLUrl: getUrlSearchParamsValue("defaultHTMLUrl"),
+        defaultCSSUrl: getUrlSearchParamsValue("defaultCSSUrl"),
+        defaultJSUrl: getUrlSearchParamsValue("defaultJSUrl")
       }
 
-      const { mode, width, height } = urlParameters
+      const {
+        mode,
+        width,
+        height,
+        defaultHTMLUrl,
+        defaultCSSUrl,
+        defaultJSUrl
+      } = urlParameters
+
+
       notNil(mode) &&
         isModeValid(mode) &&
         this.dispatch({ type: "app/UPDATE_MODE", mode })
+
+      let promises: any = [
+        ...getTextUrlPromiseSingleArray(defaultHTMLUrl),
+        ...getTextUrlPromiseSingleArray(defaultCSSUrl),
+        ...getTextUrlPromiseSingleArray(defaultJSUrl)
+      ]
+
+      return Promise.all(promises)
     }
 
     messageListener = ({ data = {} }: any) => {
       const { tsHtml: html, tsCss: css, tsJavascript: javascript } = data
-      const { dispatch } = this
+      const { dispatch, defaultHTML, defaultCSS, defaultJS } = this
 
-      notNil(html) && dispatch({ type: "app/UPDATE_HTML", html })
-      notNil(css) && dispatch({ type: "app/UPDATE_CSS", css })
-      notNil(javascript) &&
+      isNil(defaultHTML) &&
+        notNil(html) &&
+        dispatch({ type: "app/UPDATE_HTML", html })
+      isNil(defaultCSS) &&
+        notNil(css) &&
+        dispatch({ type: "app/UPDATE_CSS", css })
+      isNil(defaultJS) &&
+        notNil(javascript) &&
         dispatch({ type: "app/UPDATE_JAVASCRIPT", javascript })
+
       this.REFRESH_IFRAME_SYMBOL()
     }
 
@@ -114,11 +166,11 @@ export default mapStateStyle({
       const styles = {
         left: {
           width: visibleRight ? "50%" : "100%",
-          ...getStyleDisplayObject( !isResultMode(mode) ),
+          ...getStyleDisplayObject(!isResultMode(mode))
         },
         right: {
           width: !isResultMode(mode) ? "50%" : "100%",
-          ...getStyleDisplayObject( visibleRight || isResultMode(mode) ),
+          ...getStyleDisplayObject(visibleRight || isResultMode(mode))
         },
         foldButton: {
           left: visibleRight ? "50%" : "unset",
@@ -134,11 +186,11 @@ export default mapStateStyle({
           </div>
 
           <div className={c.left} style={styles.left}>
-              <TheLeft />
+            <TheLeft />
           </div>
 
           <div className={c.right} style={styles.right}>
-              <TheRight />
+            <TheRight />
           </div>
 
           {!isResultMode(mode) && (

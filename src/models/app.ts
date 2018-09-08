@@ -7,9 +7,12 @@ export default {
 
     visibleRight: true,
 
-    html      : null,
-    css       : null,
-    javascript: null,
+    html       : null,
+    css        : null,
+    javascript : null,
+    defaultHTML: null,
+    defaultCSS : null,
+    defaultJS  : null,
 
 
 
@@ -29,6 +32,9 @@ export default {
     UPDATE_HTML          : ( state, { html } ) => ( { ...state, html } ),
     UPDATE_CSS           : ( state, { css } ) => ( { ...state, css } ),
     UPDATE_JAVASCRIPT    : ( state, { javascript } ) => ( { ...state, javascript } ),
+    UPDATE_DEFAULT_HTML  : ( state, { defaultHTML } ) => ( { ...state, defaultHTML } ),
+    UPDATE_DEFAULT_CSS   : ( state, { defaultCSS } ) => ( { ...state, defaultCSS } ),
+    UPDATE_DEFAULT_JS    : ( state, { defaultJS } ) => ( { ...state, defaultJS } ),
     REFRESH_IFRAME_SYMBOL: state => ( { ...state, reloadIframeSymbol: !state.reloadIframeSymbol } ),
     ACE_LOADED           : state => ( { ...state, aceLoaded: true } )
   },
