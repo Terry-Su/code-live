@@ -61,7 +61,9 @@ export default mapStateStyle({
     componentDidMount() {
       const { dispatch } = this.props
 
+      dispatch( {type: 'app/UPDATE_MODE', mode: MODES.HTML } )
       this.initializeByUrlParamaters()
+
 
       window.removeEventListener("message", this.messageListener)
       window.addEventListener("message", this.messageListener)
@@ -74,6 +76,8 @@ export default mapStateStyle({
         BASIC_IFRAME_CUSTOM_EVENT,
         this.basicIframeCustomEventListener
       )
+
+      // this.initializeByUrlParamaters()
 
       // loadScript( ACE_URL, () => {
       //   dispatch( { type: 'app/ACE_LOADED' } )

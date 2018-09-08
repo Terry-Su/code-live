@@ -7,7 +7,6 @@ import { MODES } from "../../constants/types";
 export default mapStateStyle()(
   class TheCSSBox extends BasicComponent {
     onChange = ( css ) => {
-      console.log( css )
       this.dispatch( { type: 'app/UPDATE_CSS', css } )
       this.REFRESH_IFRAME_SYMBOL()
     }

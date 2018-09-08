@@ -3,7 +3,7 @@ import { MODES } from "../constants/types"
 export default {
   namespace: "app",
   state    : {
-    mode: MODES.HTML,
+    mode: null,
 
     visibleRight: true,
 
