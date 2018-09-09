@@ -27,6 +27,8 @@ import { MODES } from "../constants/types"
 import { BORDER_RADIUS } from "../constants/values"
 import Display from "./tool/Display"
 import { fetchText } from "../utils/fetchData"
+import { DEFAULT_DATA_CALLBACK_NAME } from "../constants/default";
+import fetchCrossDomainData from "../utils/fetchCrossDomainData";
 
 export default mapStateStyle({
   container: {
@@ -67,7 +69,7 @@ export default mapStateStyle({
       const { dispatch } = this.props
 
       dispatch({ type: "app/UPDATE_MODE", mode: MODES.HTML })
-      const data = await this.initializeByUrlParamaters()
+      const data = await this.initializeByUrlParamaters() || []
 
       const [defaultHTML, defaultCSS, defaultJS] = data
 
@@ -81,14 +83,13 @@ export default mapStateStyle({
       if (this.hasOneOfThree) {
         notNil(defaultHTML) &&
           dispatch({ type: "app/UPDATE_HTML", html: defaultHTML })
-        notNil(defaultCSS) && dispatch({ type: "app/UPDATE_CSS", css: defaultCSS })
+        notNil(defaultCSS) &&
+          dispatch({ type: "app/UPDATE_CSS", css: defaultCSS })
         notNil(defaultJS) &&
           dispatch({ type: "app/UPDATE_JAVASCRIPT", javascript: defaultJS })
 
         this.REFRESH_IFRAME_SYMBOL()
       }
-
-
 
       window.removeEventListener("message", this.messageListener)
       window.addEventListener("message", this.messageListener)
@@ -103,14 +104,16 @@ export default mapStateStyle({
       )
     }
 
-    initializeByUrlParamaters() {
+    async initializeByUrlParamaters() {
       const urlParameters: UrlParameters = {
         mode: getUrlSearchParamsValue("mode"),
         width: getUrlSearchParamsValue("width"),
         height: getUrlSearchParamsValue("height"),
         defaultHTMLUrl: getUrlSearchParamsValue("defaultHTMLUrl"),
         defaultCSSUrl: getUrlSearchParamsValue("defaultCSSUrl"),
-        defaultJSUrl: getUrlSearchParamsValue("defaultJSUrl")
+        defaultJSUrl: getUrlSearchParamsValue("defaultJSUrl"),
+        defaultDataUrl: getUrlSearchParamsValue("defaultDataUrl"),
+        defaultDataCallbackName: getUrlSearchParamsValue("defaultDataCallbackName")
       }
 
       const {
@@ -119,21 +122,36 @@ export default mapStateStyle({
         height,
         defaultHTMLUrl,
         defaultCSSUrl,
-        defaultJSUrl
+        defaultJSUrl,
+        defaultDataUrl,
+        defaultDataCallbackName = DEFAULT_DATA_CALLBACK_NAME
       } = urlParameters
-
 
       notNil(mode) &&
         isModeValid(mode) &&
         this.dispatch({ type: "app/UPDATE_MODE", mode })
 
-      let promises: any = [
-        ...getTextUrlPromiseSingleArray(defaultHTMLUrl),
-        ...getTextUrlPromiseSingleArray(defaultCSSUrl),
-        ...getTextUrlPromiseSingleArray(defaultJSUrl)
-      ]
+      if (notNil(defaultDataUrl)) {
+        const callbackName = notNil( defaultDataCallbackName ) ? defaultDataCallbackName : DEFAULT_DATA_CALLBACK_NAME
+        const data: URLParameterDefaultData = await fetchCrossDomainData( defaultDataUrl, callbackName )
 
-      return Promise.all(promises)
+        if ( ! data ) {
+          return 
+        }
+
+        const { html, css, js } = data
+
+        return [ html, css, js ]
+      }
+
+      if (isNil(defaultDataUrl)) {
+        let promises: any = [
+          ...getTextUrlPromiseSingleArray(defaultHTMLUrl),
+          ...getTextUrlPromiseSingleArray(defaultCSSUrl),
+          ...getTextUrlPromiseSingleArray(defaultJSUrl)
+        ]
+        return Promise.all(promises)
+      }
     }
 
     messageListener = ({ data = {} }: any) => {

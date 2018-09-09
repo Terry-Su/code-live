@@ -1,0 +1,1 @@
+export const DEFAULT_DATA_CALLBACK_NAME = 'codeViewerCallback'
