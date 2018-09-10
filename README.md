@@ -1,6 +1,6 @@
 CodeViewer is a great light editor that supports both **real-time coding and viewing** for Front-End developers, like CodePen or JSFiddle.  
-When writing a blog or a website, sometimes we want to add an vivid example, even including related codes. So, CodeViewer comes out.  
-Unlike CodePen or JSFiddle, CodeViewer is a pure Front-End project(no dynamical server), you needn't to worry about **transnational network restriction** and you're able to **custom display style** freely.
+  
+When writing a blog or a website, sometimes we want to add an vivid example, even including related codes. So, CodeViewer comes out. Unlike CodePen or JSFiddle, CodeViewer is a pure Front-End project(no dynamical server), you needn't to worry about **transnational network restriction** and you're able to **custom display style** freely.
 
 
 ## Concept
@@ -13,7 +13,7 @@ HTML/CSS/JS + Static Server(Github Page) = Your own CodePen
 
 
 ## Example
-CodeViewer home page + `?defaultDataUrl=` + Passing data url: 
+CodeViewer home page + `?defaultDataUrl=` + Passing data url:   
 https://terry-su.github.io/CDN/CodeViewer/index.html?defaultDataUrl=https://terry-su.github.io/CDN/CodeViewer/examples/testData.js
 
 
