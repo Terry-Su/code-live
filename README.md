@@ -42,7 +42,7 @@ function codeViewerCallback() {
 Use the companion of CodeViewer for [more flexiable usage](https://github.com/Terry-Su/CDN/tree/master/CodeViewer/examples/iframe)
 
 
-## Api
+## API
 ### `mode`
 Default mode(html, css or js) to show  
 
