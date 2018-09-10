@@ -70,21 +70,28 @@ export default mapStateStyle({
       // Line numbers bar
       editor.renderer.setShowGutter(false);
 
-
+      // Hide extra vertical line
       editor.setShowPrintMargin(false)
-      // editor.renderer.setOption('fixedWidthGutter', false);
-      // editor.renderer.setOption('fixedWidthGutter', false);
 
+      // Enable word wrapping
+      editor.getSession().setOption('indentedSoftWrap', false)
+      editor.getSession().setUseWrapMode(true)
     }
 
-    componentDidUpdate() {
+    componentDidUpdate( prevProps ) {
       const { value } = this.props
-      const { aceValue } = this
+      const { aceValue, editor } = this
 
       if (notNil( value ) && notNil( aceValue ) && aceValue !== value) {
         this.silent = true
-        this.editor.setValue(value, 1)
+        editor.setValue(value, 1)
         this.silent = false
+      }
+
+      // Watch the change of 'visibleRight'
+      if ( prevProps.app.visibleRight !== this.visibleRight ) {
+        editor.getSession().setUseWrapMode( false )
+        editor.getSession().setUseWrapMode( true )
       }
     }
 
