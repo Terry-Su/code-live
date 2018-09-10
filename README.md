@@ -34,7 +34,7 @@ function codeViewerCallback() {
 ```
 
 2. Just use it with(you can also use it in an **iframe**):   
-[the url of CodeViewer's home page](https://terry-su.github.io/CDN/CodeViewer/index.html) + `?defaultDataUrl=` + Your data url
+[The url of CodeViewer's home page](https://terry-su.github.io/CDN/CodeViewer/index.html) + `?defaultDataUrl=` + Your data url
 
 ### Advaned
 Use the companion of CodeViewer for [more flexiable usage](https://github.com/Terry-Su/CDN/tree/master/CodeViewer/examples/iframe)
