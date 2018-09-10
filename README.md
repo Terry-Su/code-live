@@ -13,7 +13,7 @@ HTML/CSS/JS + Static Server(Github Page) = Your own CodePen
 
 
 ## Example
-[CodeViewer home page](https://terry-su.github.io/CDN/CodeViewer/index.html) + `?defaultDataUrl=` + [Passing data](https://terry-su.github.io/CDN/CodeViewer/examples/testData.js):  
+CodeViewer home page + `?defaultDataUrl=` + Passing data url: 
 https://terry-su.github.io/CDN/CodeViewer/index.html?defaultDataUrl=https://terry-su.github.io/CDN/CodeViewer/examples/testData.js
 
 
@@ -37,7 +37,7 @@ function codeViewerCallback() {
 [the url of CodeViewer's home page](https://terry-su.github.io/CDN/CodeViewer/index.html) + `?defaultDataUrl=` + Your data url
 
 ### Advaned
-Use the companion of CodeViewer for [more flexiable usage](https://github.com/Terry-Su/CDN/tree/master/iframes/__template__)
+Use the companion of CodeViewer for [more flexiable usage](https://github.com/Terry-Su/CDN/tree/master/CodeViewer/examples/iframe)
 
 
 ## Api
