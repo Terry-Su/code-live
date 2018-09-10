@@ -13,7 +13,8 @@ HTML/CSS/JS + Static Server(Github Page) = Your own CodePen
 
 
 ## Example
-CodeViewer home page + `?defaultDataUrl=` + Passing data url:   
+CodeViewer home page + `?defaultDataUrl=` + Passing data url:     
+  
 https://terry-su.github.io/CDN/CodeViewer/index.html?defaultDataUrl=https://terry-su.github.io/CDN/CodeViewer/examples/hello.js
 
 
@@ -33,7 +34,8 @@ function codeViewerCallback() {
 }
 ```
 
-2. Just use it with(you can also use it in an **iframe**):   
+2. Just use it with(you can also use it in an **iframe**):      
+  
 [The url of CodeViewer's home page](https://terry-su.github.io/CDN/CodeViewer/index.html) + `?defaultDataUrl=` + Your data url
 
 ### Advaned
@@ -42,13 +44,17 @@ Use the companion of CodeViewer for [more flexiable usage](https://github.com/Te
 
 ## Api
 ### `mode`
-Default mode(html, css or js) to show 
-Possible value: "html" , "css" or "js"  
+Default mode(html, css or js) to show  
+
+Possible value: "html" , "css" or "js"    
+   
 Example: [mode=css](https://terry-su.github.io/CDN/CodeViewer/index.html?defaultDataUrl=https://terry-su.github.io/CDN/CodeViewer/examples/testData.js&mode=css)
 
 ### `defaultDataUrl`
-Default data url used to display its data
-Like: https://terry-su.github.io/CDN/CodeViewer/examples/testData.js
+Default data url used to display its data   
+  
+Like: https://terry-su.github.io/CDN/CodeViewer/examples/testData.js  
+  
 Data format:
 ```js
 function codeViewerCallback() {
@@ -64,7 +70,8 @@ function codeViewerCallback() {
 ```
 
 ### `defaultDataCallbackName`
-To rewrite default function name `codeViewerCallback`.
+To rewrite default function name `codeViewerCallback`.   
+
 Example: [defaultDataCallbackName=myCallback](https://terry-su.github.io/CDN/CodeViewer/index.html?defaultDataUrl=https://terry-su.github.io/CDN/CodeViewer/examples/testData-my-callback.js&defaultDataCallbackName=myCallback)
 
 
