@@ -71,6 +71,8 @@ export default mapStateStyle({
       editor.renderer.setShowGutter(false);
 
 
+      editor.setShowPrintMargin(false)
+      // editor.renderer.setOption('fixedWidthGutter', false);
       // editor.renderer.setOption('fixedWidthGutter', false);
 
     }
