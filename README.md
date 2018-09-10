@@ -33,7 +33,7 @@ function codeViewerCallback() {
 }
 ```
 
-2. Just use it with(you can also use it in an **iframe**): 
+2. Just use it with(you can also use it in an **iframe**):   
 [the url of CodeViewer's home page](https://terry-su.github.io/CDN/CodeViewer/index.html) + `?defaultDataUrl=` + Your data url
 
 ### Advaned
