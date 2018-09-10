@@ -155,8 +155,12 @@ export default mapStateStyle({
     }
 
     messageListener = ({ data = {} }: any) => {
-      const { tsHtml: html, tsCss: css, tsJavascript: javascript } = data
+      let { tsHtml: html, tsCss: css, tsJavascript: javascript } = data
       const { dispatch, defaultHTML, defaultCSS, defaultJS } = this
+
+      html = notNil( html ) ? html : ''
+      css = notNil( css ) ? css : ''
+      javascript = notNil( javascript ) ? javascript : ''
 
       isNil(defaultHTML) &&
         notNil(html) &&

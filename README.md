@@ -1,1 +1,72 @@
-CodeViewer is an light editor supports both real-time coding and viewing for Front-End developers, like JSFiddle or CodePen. 
+CodeViewer is a great light editor that supports both **real-time coding and viewing** for Front-End developers, like CodePen or JSFiddle.  
+When writing a blog or a website, sometimes we want to add an vivid example, even including related codes. So, CodeViewer comes out.  
+Unlike CodePen or JSFiddle, CodeViewer is a pure Front-End project(no dynamical server), you needn't to worry about **transnational network restriction** and you're able to **custom display style** freely.
+
+
+## Concept
+HTML/CSS/JS + Static Server(Github Page) = Your own CodePen
+
+
+## Where to use it
+1. Website(like blog) to add code examples
+2. Be creative
+
+
+## Example
+[CodeViewer home page](https://terry-su.github.io/CDN/CodeViewer/index.html) + `?defaultDataUrl=` + [Passing data](`https://terry-su.github.io/CDN/CodeViewer/examples/testData.js`):
+https://terry-su.github.io/CDN/CodeViewer/index.html?defaultDataUrl=https://terry-su.github.io/CDN/CodeViewer/examples/testData.js
+
+
+## Get Started
+### Basic way
+1. Create your `data.js` to display and put it on your static server(like Github Page). Data format:
+```js
+function codeViewerCallback() {
+  return {
+    // Set html content
+    html: '',
+    // Set css content
+    css: '',
+    // Set javascript content
+    js: ''
+  }
+}
+```
+
+2. Just use it with(you can also use it in an **iframe**): 
+[the url of CodeViewer's home page](https://terry-su.github.io/CDN/CodeViewer/index.html) + `?defaultDataUrl=` + Your data url
+
+### Advaned
+Use the companion of CodeViewer for [more flexiable usage](https://github.com/Terry-Su/CDN/tree/master/iframes/__template__)
+
+
+## Api
+### `mode`
+Default mode(html, css or js) to show 
+Possible value: "html" , "css" or "js"  
+Example: [mode=css](https://terry-su.github.io/CDN/CodeViewer/index.html?defaultDataUrl=https://terry-su.github.io/CDN/CodeViewer/examples/testData.js&mode=css)
+
+### `defaultDataUrl`
+Default data url used to display its data
+Like: https://terry-su.github.io/CDN/CodeViewer/examples/testData.js
+Data format:
+```js
+function codeViewerCallback() {
+  return {
+    // Set html content
+    html: '',
+    // Set css content
+    css: '',
+    // Set javascript content
+    js: ''
+  }
+}
+```
+
+### `defaultDataCallbackName`
+To rewrite default function name `codeViewerCallback`.
+Example: [defaultDataCallbackName=myCallback](https://terry-su.github.io/CDN/CodeViewer/index.html?defaultDataUrl=https://terry-su.github.io/CDN/CodeViewer/examples/testData-my-callback.js&defaultDataCallbackName=myCallback)
+
+
+## Contributing
+If you found somewhere in codes to be improved or fixed, or just make a suggestion, don't hesitate to send a pull request.

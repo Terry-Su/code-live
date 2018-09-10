@@ -86,10 +86,13 @@ function getUrlParameters() {
 function fetchText( url ) {
   return fetch( url ).then( function( response ) {
     try {
-      return response.text()
+      const status = response.status
+      return status === 200 ? response.text() : null
     } catch ( e ) {
       return null
     }
+  } ).catch( function( e ) {
+    return null
   } )
 }
 
