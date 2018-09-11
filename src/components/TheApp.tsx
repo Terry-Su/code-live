@@ -68,8 +68,10 @@ export default mapStateStyle({
     async componentDidMount() {
       const { dispatch } = this.props
 
-      dispatch({ type: "app/UPDATE_MODE", mode: MODES.HTML })
       const data = await this.initializeByUrlParamaters() || []
+      isNil(this.mode) && dispatch({ type: "app/UPDATE_MODE", mode: MODES.HTML })
+
+      
 
       const [defaultHTML, defaultCSS, defaultJS] = data
 
