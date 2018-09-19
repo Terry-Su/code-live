@@ -53,7 +53,7 @@ Example: [mode=css](https://terry-su.github.io/CDN/CodeViewer/index.html?default
 ### `defaultDataUrl`
 Default data url used to display its data   
   
-Like: https://terry-su.github.io/CDN/CodeViewer/examples/testData.js  
+Like: https://terry-su.github.io/CDN/CodeViewer/examples/hello.js  
   
 Data format:
 ```js
