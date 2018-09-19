@@ -18,6 +18,7 @@ import values from "lodash/values"
 // import isEqual from "lodash/isEqual"
 // import find from "lodash/find"
 // import pick from "lodash/pick"
+import debounce from "lodash/debounce"
 
 export {
   isNil,
@@ -40,7 +41,9 @@ export {
 	// isString,
 	// isDate,
   // find,
-  // pick
+  // pick,
+
+  debounce,
 }
 
 

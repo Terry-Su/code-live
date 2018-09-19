@@ -1,7 +1,7 @@
 import React from "react"
 import mapStateStyle from "../../utils/mapStateStyle"
 import BasicComponent from "../BasicComponent"
-import { notNil } from "../../utils/lodash"
+import { notNil, debounce } from "../../utils/lodash"
 import { MODES } from "../../constants/types";
 import { BORDER_RADIUS } from "../../constants/values";
 
@@ -53,8 +53,9 @@ export default mapStateStyle({
       this.editor = window["ace"].edit(aceDom)
       const { editor, onChange } = this
       // Event
-      editor.session.off("change", onChange)
-      editor.session.on("change", onChange)
+      const debounced = debounce( onChange, 800 )
+      editor.session.off("change", debounced)
+      editor.session.on("change", debounce( debounced ))
       
       // Language Mode
       const { Mode } = this
