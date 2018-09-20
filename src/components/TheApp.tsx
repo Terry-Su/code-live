@@ -90,7 +90,7 @@ export default mapStateStyle({
         notNil(defaultJS) &&
           dispatch({ type: "app/UPDATE_JAVASCRIPT", javascript: defaultJS })
 
-        this.REFRESH_IFRAME_SYMBOL()
+        // this.REFRESH_IFRAME_SYMBOL()
       }
 
       window.removeEventListener("message", this.messageListener)
@@ -174,7 +174,7 @@ export default mapStateStyle({
         notNil(javascript) &&
         dispatch({ type: "app/UPDATE_JAVASCRIPT", javascript })
 
-      this.REFRESH_IFRAME_SYMBOL()
+      // this.REFRESH_IFRAME_SYMBOL()
     }
 
     basicIframeCustomEventListener = ({ detail }: any) => {
