@@ -1,6 +1,12 @@
-console.log( 123 )
+const canvas = document.getElementById( "myCanvas" )
 
-// const canvas = document.getElementById( "myCanvas" )
+const { width, height } = document.body.getBoundingClientRect()
+// console.log( height )
+canvas.height = height
+
+
+
+
 // const draw = new window.Draw( canvas )
 
 // draw.addElement( "line", {
