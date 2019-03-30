@@ -1,6 +1,6 @@
-Code-live is a great light editor that supports both **real-time coding and viewing** for Front-End developers, like CodePen or JSFiddle.  
+Code-Live is a great light editor that supports both **real-time coding and viewing** for Front-End developers, like CodePen or JSFiddle.  
   
-While writing a blog or a website, sometimes we want to add an vivid example, even including related codes. So, CodeViewer comes out. Unlike CodePen or JSFiddle, CodeViewer is a pure Front-End project(no dynamical server), you needn't to worry about **transnational network restriction** and you're able to **custom display style** freely.
+While writing a blog or a website, sometimes we want to add an vivid example, even including related codes. So, Code-Live comes out. Unlike CodePen or JSFiddle, CodeViewer is a pure Front-End project(no dynamical server), you needn't to worry about **transnational network restriction** and you're able to **custom display style** freely.
 
 
 ## Concept
@@ -13,7 +13,7 @@ HTML/CSS/JS + Static Server(Github Page) = Your own CodePen
 
 
 ## Example
-CodeViewer home page + `?defaultDataUrl=` + Passing data url:     
+Code-Live home page + `?defaultDataUrl=` + Passing data url:     
   
 https://terry-su.github.io/CDN/CodeViewer/index.html?defaultDataUrl=https://terry-su.github.io/CDN/CodeViewer/examples/hello.js
 
@@ -36,10 +36,10 @@ function codeViewerCallback() {
 
 2. Just use it with(you can also use it in an **iframe**):      
   
-[The url of CodeViewer's home page](https://terry-su.github.io/CDN/CodeViewer/index.html) + `?defaultDataUrl=` + Your data url
+[The url of Code-Live's home page](https://terry-su.github.io/CDN/CodeViewer/index.html) + `?defaultDataUrl=` + Your data url
 
 ### Advaned
-Use the companion of CodeViewer for [more flexiable usage](https://github.com/Terry-Su/CDN/tree/master/CodeViewer/examples/iframe)
+Use the companion of Code-Live for [more flexiable usage](https://github.com/Terry-Su/CDN/tree/master/CodeViewer/examples/iframe)
 
 
 ## API
