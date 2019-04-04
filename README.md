@@ -1,6 +1,6 @@
 Code-Live is a great light editor that supports both **real-time coding and viewing** for Front-End developers, like CodePen or JSFiddle.  
   
-While writing a blog or a website, sometimes we want to add an vivid example, even including related codes. So, Code-Live comes out. Unlike CodePen or JSFiddle, CodeViewer is a pure Front-End project(no dynamical server), you needn't to worry about **transnational network restriction** and you're able to **custom display style** freely.
+While writing a blog or a website, sometimes we want to add an vivid example, even including related codes. So, Code-Live comes out. Unlike CodePen or JSFiddle, CodeViewer is a pure Front-End project(no dynamical server), you needn't to worry about **transnational network restriction** and you're able to **custom display style freely**.
 
 
 ## Concept
