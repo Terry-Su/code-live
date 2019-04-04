@@ -38,7 +38,7 @@ function codeViewerCallback() {
   
 [The url of Code-Live's home page](https://terry-su.github.io/CDN/CodeViewer/index.html) + `?defaultDataUrl=` + Your data url
 
-### Advaned
+### Advaned way
 Use the companion of Code-Live for [more flexiable usage](https://github.com/Terry-Su/CDN/tree/master/CodeViewer/examples/iframe)
 
 
