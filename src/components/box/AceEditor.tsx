@@ -77,6 +77,11 @@ export default mapStateStyle({
       // Enable word wrapping
       editor.getSession().setOption('indentedSoftWrap', false)
       editor.getSession().setUseWrapMode(true)
+
+      // # highlight
+      editor.setOption('highlightActiveLine', false)
+      editor.setOption('highlightGutterLine', false)
+      // editor.renderer.$cursorLayer.element.style.display = "none"
     }
 
     componentDidUpdate( prevProps ) {

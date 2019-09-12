@@ -1,15 +1,17 @@
 const browserSync = require( 'browser-sync' )
+const path = require( 'path' )
 
 const bs = browserSync.create()
-const serverPath = __dirname
+const serverPath = path.resolve( __dirname, 'new' )
 
 const serverconfig = {
 	server: {
-		baseDir: serverPath,
+		baseDir  : serverPath,
 		directory: true,
 	},
 	files: [
-		`${serverPath}/src/**`
+		// `${serverPath}/src/**`,
+		`${serverPath}/**`,
 	],
 	port: 9000,
 	open: false,

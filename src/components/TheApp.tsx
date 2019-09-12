@@ -108,6 +108,9 @@ export default mapStateStyle({
 
     async initializeByUrlParamaters() {
       const urlParameters: UrlParameters = {
+        html: getUrlSearchParamsValue("html"),
+        css: getUrlSearchParamsValue("css"),
+        js: getUrlSearchParamsValue("js"),
         mode: getUrlSearchParamsValue("mode"),
         width: getUrlSearchParamsValue("width"),
         height: getUrlSearchParamsValue("height"),
@@ -120,6 +123,9 @@ export default mapStateStyle({
 
       const {
         mode,
+        html,
+        css,
+        js,
         width,
         height,
         defaultHTMLUrl,
@@ -128,6 +134,10 @@ export default mapStateStyle({
         defaultDataUrl,
         defaultDataCallbackName = DEFAULT_DATA_CALLBACK_NAME
       } = urlParameters
+
+      if ( notNil( html ) || notNil( css ) || notNil( js ) ) {
+        return [ html, css, js ]
+      }
 
       notNil(mode) &&
         isModeValid(mode) &&

@@ -2,18 +2,19 @@
   "include": ["src/**/*"],
   "exclude": ["node_modules"],
   "compilerOptions": {
-    "module": "es6",
+    "module": "esnext",
 		"target": "es5",
 		"jsx": "react",
     "allowJs": true,
-    "outDir": "../../build/",
     "sourceMap": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "lib": ["dom", "es2016"],
     "types": ["node", "webpack-env"],
     "typeRoots": [
+      "node_modules/@types/**/*",
       "src/typings/**/*"
-    ]
+    ],
+    "esModuleInterop": true
   }
 }

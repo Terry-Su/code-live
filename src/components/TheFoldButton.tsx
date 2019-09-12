@@ -40,7 +40,7 @@ export default mapStateStyle( {
         }
       }
       return <div className={c.container} onClick={ this.onClick }>
-        <img className={c.image} style={ styles.image } src={ FOLD_TO_RIGHT } alt="Fold"/>
+        <img className={c.image} style={ styles.image } src={ FOLD_TO_RIGHT as string } alt="Fold"/>
       </div>
     }
   }
