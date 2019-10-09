@@ -171,7 +171,6 @@ export default mapStateStyle({
       let { tsHtml: html, tsCss: css, tsJavascript: javascript, encoded = false } = data
       const { dispatch, defaultHTML, defaultCSS, defaultJS } = this
 
-      console.log( 'encoded', encoded )
       if ( encoded ) {
         html = notNil( html ) ? decodeURIComponent( html ) : ''
         css = notNil( css ) ? decodeURIComponent( css ) : ''
