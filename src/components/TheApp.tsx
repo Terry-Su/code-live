@@ -40,8 +40,8 @@ export default mapStateStyle({
   nav: {
     position: "absolute",
     left: "0",
-    top: "0"
-    // width: '100%',
+    top: "0",
+    width: '100%',
   },
   left: {
     boxSizing: "border-box",

@@ -9,11 +9,13 @@ import { loadScript } from "../../utils/js";
 import { BORDER_RADIUS } from "../../constants/values";
 import { getFormattedDateString } from "../../utils/time";
 import download from '../../utils/download'
+import { MAIN_BLUE } from "../../constants/colors";
 
 export default mapStateStyle({
   container: {
     boxSizing: 'border-box',
     display: 'flex',
+    justifyContent: 'flex-end',
     alignItems: 'center',
     width: '100%',
     height: `${ NAV_HEIGHT }px`,
@@ -22,6 +24,19 @@ export default mapStateStyle({
     borderBottom: 'none',
     borderTopLeftRadius: `${ BORDER_RADIUS }`,
     borderTopRightRadius: `${ BORDER_RADIUS }`,
+  },
+  importingInputLabel: {
+    display: 'inline-flex',
+    padding: '0px 10px',
+    marginLeft: 'auto',
+    color: '#666',
+    cursor: 'pointer',
+    '&:hover': {
+      color: `${ MAIN_BLUE }!important`
+    }
+  },
+  importingInput: {
+    display: 'none'
   }
 })(
   class TheNav extends BasicComponent {
@@ -77,9 +92,8 @@ export default mapStateStyle({
         <Button active={ isCSSMode( mode ) } empty={ emptyCSS } onClick={ () => this.updateMode( MODES.CSS ) }>CSS</Button>
         <Button active={ isJavaScriptMode( mode ) } empty={ emptyJavaScript } onClick={ () => this.updateMode( MODES.JAVASCRIPT ) }>JS</Button>
         <Button active={ isResultMode( mode ) } onClick={ this.onResultClick }>Result</Button>
-        &nbsp;&nbsp;
-        <label className="importInputLabel">
-          <input type="file"  className="fileInput" name="upload" onChange={ this.handleImportChange }/>
+        <label className={c.importingInputLabel}>
+          <input type="file"  className={c.importingInput} name="upload" onChange={ this.handleImportChange }/>
           Import
         </label>
         <Button onClick={ this.handleClickExport }>Export</Button>
