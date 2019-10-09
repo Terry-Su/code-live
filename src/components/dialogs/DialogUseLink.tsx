@@ -6,6 +6,7 @@ import composeExportImportData from "../../utils/businessLogic/composeExportImpo
 import Button from "../TheNav/Button";
 import { getFormattedDateString } from "../../utils/time";
 import download from '../../utils/download'
+import styled from 'styled-components'
 
 export default mapStateStyle({
   
@@ -53,8 +54,7 @@ export default mapStateStyle({
       const iframeSrc = `${location.origin}${location.pathname === "/" ? "" : location.pathname}?${searchStr}`
       
       
-      return `
-<!DOCTYPE html>
+      return `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -84,8 +84,7 @@ codeLiveIframe.onload = function() {
 
     get htmlWithoutEditor() {
       const { html = '', css = '', javascript = '', mode, urlParams } = this.app
-      return `
-<!DOCTYPE html>
+      return `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -130,6 +129,7 @@ ${javascript || ''}
     render() {
       const { c } = this
       return <Dialog visible={this.app.visibleDialogUseLink} onClose={this.handleCloseDialog}>
+        <StyledRoot>
           <h2>Link Url</h2>
           <textarea
             style={{
@@ -139,29 +139,58 @@ ${javascript || ''}
             value={this.linkUrl}
           />
           <br />
-          <div>
-            <div>
-              <button onClick={this.handleClickDownloadHtmlWithEditor}>Download HTML with Editor</button>
+          <div className="downloading-html-container">
+            <div className="item">
+              <div>
+                <button onClick={this.handleClickDownloadHtmlWithEditor}>Download HTML with Editor</button>
+              </div>
               <textarea
-            style={{
-              width: '80%',
-              height: '100px'
-            }}
             value={this.htmlWithEditorStr}
           />
             </div>
-            <div>
-              <button onClick={this.handleClickDownloadHtmlWithoutEditor}>Download HTML without Editor</button>
-              <textarea
-            style={{
-              width: '80%',
-              height: '100px'
-            }}
-            value={this.htmlWithoutEditor}
+            <div className="item">
+              <div>
+                <button onClick={this.handleClickDownloadHtmlWithoutEditor}>Download HTML without Editor</button>
+              </div>
+              <textarea value={this.htmlWithoutEditor}
           />
             </div>
           </div>
+        </StyledRoot>
       </Dialog>
     }
   }
 )
+
+const StyledRoot = (styled as any).div`
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+width: 100%;
+
+.downloading-html-container {
+  display: flex;
+  width: 80%;
+  margin-top: 10px;
+
+  >.item {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    textarea {
+      box-sizing: border-box;
+      width: 100%;
+      height: 100px;
+      padding: 6px;
+      margin-top: 10px;
+    }
+  }
+}
+
+textarea {
+  resize: none;
+}
+` 
