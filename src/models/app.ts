@@ -41,7 +41,12 @@ export default {
     REFRESH_IFRAME_SYMBOL: state => ( { ...state, reloadIframeSymbol: !state.reloadIframeSymbol } ),
     ACE_LOADED           : state => ( { ...state, aceLoaded: true } ),
     // # data
-    UPDATE_URL_PARAMS    : ( state, { urlParams } ) => ( { ...state, urlParams } )
+    UPDATE_URL_PARAMS    : ( state, { urlParams } ) => ( { ...state, urlParams } ),
+    // ## import data
+    IMPORT_DATA          : ( state, { data = {} } ) => ( {
+      ...state,
+      ...data,
+    } )
   },
   effects: {}
 }

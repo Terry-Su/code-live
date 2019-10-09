@@ -33,19 +33,41 @@ export default mapStateStyle({
       this.updateMode( MODES.RESULT )
     }
 
-    handleClickExport = () => {
+    handleClickExport = ( ) => {
       const timeString = getFormattedDateString( new Date() )
       const defaultFileName = `code-live--${timeString}`
       const fileName = window.prompt( `File Name:`, defaultFileName )
       
       // # compose data
-      const { html, css, js, mode, urlParams } = this.app
+      const { html, css, javascript, mode, urlParams } = this.app
       const data: ExportImportData = {
         ...urlParams,
-        html, css, js, mode,
+        html, css, javascript, mode,
       }
       const dataString = JSON.stringify( data )
       download( dataString, `${fileName}.codelive` )
+    }
+
+    handleImportChange = ( event: any ) => {
+      const fileInput = event.target
+      try {
+        const reader = new FileReader()
+
+        reader.onload = ( event: any ) => {
+          // Reset value so that uploading file which has 
+          // the same name next time still triggers change event
+          fileInput.value = ''
+
+          const str = event.target.result
+          this.importDataByDataStr( str )
+        }
+        reader.readAsText( event.target.files[ 0 ] )
+      } catch ( e ) {}
+    }
+
+    importDataByDataStr = ( dataStr ) => {
+      const data: ExportImportData = JSON.parse( dataStr )
+      this.dispatch( { type: `app/IMPORT_DATA`, data } )
     }
 
     render() {
@@ -56,7 +78,10 @@ export default mapStateStyle({
         <Button active={ isJavaScriptMode( mode ) } empty={ emptyJavaScript } onClick={ () => this.updateMode( MODES.JAVASCRIPT ) }>JS</Button>
         <Button active={ isResultMode( mode ) } onClick={ this.onResultClick }>Result</Button>
         &nbsp;&nbsp;
-        {/* <Button>Import</Button> */}
+        <label className="importInputLabel">
+          <input type="file"  className="fileInput" name="upload" onChange={ this.handleImportChange }/>
+          Import
+        </label>
         <Button onClick={ this.handleClickExport }>Export</Button>
       </div>
     }
