@@ -28,6 +28,7 @@
     "react-jss": "^8.6.1",
     "serve-index": "^1.9.1",
     "style-loader": "^0.23.0",
+    "styled-components": "^4.4.0",
     "ts-loader": "^4.5.0",
     "ts-node": "^7.0.1",
     "typescript": "^3.0.3",

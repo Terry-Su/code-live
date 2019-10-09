@@ -26,6 +26,9 @@ export default {
 
     // # data
     urlParams: {},
+
+    // # dialog
+    visibleDialogUseLink: false,
   },
   reducers: {
     UPDATE_MODE          : ( state, { mode } ) => ( { ...state, mode } ),
@@ -46,7 +49,11 @@ export default {
     IMPORT_DATA          : ( state, { data = {} } ) => ( {
       ...state,
       ...data,
-    } )
+    } ),
+
+    // # dialog
+    SHOW_DIALOG_USE_LINK: state => ( { ...state, visibleDialogUseLink: true } ),
+    HIDE_DIALOG_USE_LINK: state => ( { ...state, visibleDialogUseLink: false } ),
   },
   effects: {}
 }

@@ -10,6 +10,8 @@ import { BORDER_RADIUS } from "../../constants/values";
 import { getFormattedDateString } from "../../utils/time";
 import download from '../../utils/download'
 import { MAIN_BLUE } from "../../constants/colors";
+import DialogUseLink from "../dialogs/DialogUseLink";
+import composeExportImportData from "../../utils/businessLogic/composeExportImportData";
 
 export default mapStateStyle({
   container: {
@@ -52,13 +54,10 @@ export default mapStateStyle({
       const timeString = getFormattedDateString( new Date() )
       const defaultFileName = `code-live--${timeString}`
       const fileName = window.prompt( `File Name:`, defaultFileName )
+      if ( fileName == null ) { return }
       
       // # compose data
-      const { html, css, javascript, mode, urlParams } = this.app
-      const data: ExportImportData = {
-        ...urlParams,
-        html, css, javascript, mode,
-      }
+      const data: ExportImportData = composeExportImportData( this.app )
       const dataString = JSON.stringify( data )
       download( dataString, `${fileName}.codelive` )
     }
@@ -85,6 +84,10 @@ export default mapStateStyle({
       this.dispatch( { type: `app/IMPORT_DATA`, data } )
     }
 
+    handleClickCopyLink = () => {
+      this.dispatch({type: `app/SHOW_DIALOG_USE_LINK`})
+    }
+
     render() {
       const { c, mode, updateMode, emptyHTML, emptyCSS, emptyJavaScript } = this
       return <div className={ c.container }>
@@ -97,6 +100,8 @@ export default mapStateStyle({
           Import
         </label>
         <Button onClick={ this.handleClickExport }>Export</Button>
+        <Button onClick={ this.handleClickCopyLink }>Use Link</Button>
+        <DialogUseLink />
       </div>
     }
   }
