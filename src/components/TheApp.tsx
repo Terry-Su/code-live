@@ -168,12 +168,20 @@ export default mapStateStyle({
     }
 
     messageListener = ({ data = {} }: any) => {
-      let { tsHtml: html, tsCss: css, tsJavascript: javascript } = data
+      let { tsHtml: html, tsCss: css, tsJavascript: javascript, encoded = false } = data
       const { dispatch, defaultHTML, defaultCSS, defaultJS } = this
 
-      html = notNil( html ) ? html : ''
-      css = notNil( css ) ? css : ''
-      javascript = notNil( javascript ) ? javascript : ''
+      console.log( 'encoded', encoded )
+      if ( encoded ) {
+        html = notNil( html ) ? decodeURIComponent( html ) : ''
+        css = notNil( css ) ? decodeURIComponent( css ) : ''
+        javascript = notNil( javascript ) ? decodeURIComponent( javascript ) : ''
+      } else {
+        html = notNil( html ) ? html : ''
+        css = notNil( css ) ? css : ''
+        javascript = notNil( javascript ) ? javascript : ''
+      }
+      
 
       isNil(defaultHTML) &&
         notNil(html) &&
