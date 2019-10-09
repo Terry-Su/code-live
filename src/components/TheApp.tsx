@@ -22,7 +22,7 @@ import {
   BASIC_IFRAME_CUSTOM_EVENT,
   BASIC_IFRAME_UPDATE_DATA_FN
 } from "../constants/names"
-import { getUrlSearchParamsValue, loadScript } from "../utils/js"
+import { getUrlSearchParamsValue, loadScript, getUrlSearchParams } from "../utils/js"
 import { MODES } from "../constants/types"
 import { BORDER_RADIUS } from "../constants/values"
 import Display from "./tool/Display"
@@ -67,7 +67,8 @@ export default mapStateStyle({
   class TheApp extends BasicComponent {
     async componentDidMount() {
       const { dispatch } = this.props
-
+      const urlParams = getUrlSearchParams()
+      dispatch({ type: "app/UPDATE_URL_PARAMS", urlParams })
       const data = await this.initializeByUrlParamaters() || []
       isNil(this.mode) && dispatch({ type: "app/UPDATE_MODE", mode: MODES.HTML })
 

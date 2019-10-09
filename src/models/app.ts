@@ -23,6 +23,9 @@ export default {
 
 
     aceLoaded: false,
+
+    // # data
+    urlParams: {},
   },
   reducers: {
     UPDATE_MODE          : ( state, { mode } ) => ( { ...state, mode } ),
@@ -36,7 +39,9 @@ export default {
     UPDATE_DEFAULT_CSS   : ( state, { defaultCSS } ) => ( { ...state, defaultCSS } ),
     UPDATE_DEFAULT_JS    : ( state, { defaultJS } ) => ( { ...state, defaultJS } ),
     REFRESH_IFRAME_SYMBOL: state => ( { ...state, reloadIframeSymbol: !state.reloadIframeSymbol } ),
-    ACE_LOADED           : state => ( { ...state, aceLoaded: true } )
+    ACE_LOADED           : state => ( { ...state, aceLoaded: true } ),
+    // # data
+    UPDATE_URL_PARAMS    : ( state, { urlParams } ) => ( { ...state, urlParams } )
   },
   effects: {}
 }

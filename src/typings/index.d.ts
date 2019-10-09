@@ -20,6 +20,8 @@ interface URLParameterDefaultData {
 }
 
 
+interface ExportImportData extends UrlParameters {}
+
 declare module "*.svg" {
     
 }
