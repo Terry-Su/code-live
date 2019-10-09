@@ -82,6 +82,29 @@ codeLiveIframe.onload = function() {
 `
     }
 
+    get htmlWithoutEditor() {
+      const { html = '', css = '', javascript = '', mode, urlParams } = this.app
+      return `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>html,body{width:100%;height:100%;padding:0;margin:0;</style>
+  <style>${css || ''}</style>
+</head>
+<body>
+  ${html || ''}
+</body>
+<script>
+${javascript || ''}
+</script>
+</html>
+`
+    }
+
     handleCloseDialog = () => {
         this.dispatch({type: `app/HIDE_DIALOG_USE_LINK`})
     }
@@ -93,6 +116,15 @@ codeLiveIframe.onload = function() {
       if ( fileName == null ) { return }
       
       download( this.htmlWithEditorStr, `${fileName}.html` )
+    }
+
+    handleClickDownloadHtmlWithoutEditor = () => {
+      const timeString = getFormattedDateString( new Date() )
+      const defaultFileName = `html--${timeString}`
+      const fileName = window.prompt( `File Name:`, defaultFileName )
+      if ( fileName == null ) { return }
+      
+      download( this.htmlWithoutEditor, `${fileName}.html` )
     }
 
     render() {
@@ -116,6 +148,16 @@ codeLiveIframe.onload = function() {
               height: '100px'
             }}
             value={this.htmlWithEditorStr}
+          />
+            </div>
+            <div>
+              <button onClick={this.handleClickDownloadHtmlWithoutEditor}>Download HTML without Editor</button>
+              <textarea
+            style={{
+              width: '80%',
+              height: '100px'
+            }}
+            value={this.htmlWithoutEditor}
           />
             </div>
           </div>
