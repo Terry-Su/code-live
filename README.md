@@ -4,7 +4,7 @@ Code-Live is a great eaily used editor that supports both **real-time coding and
 ## Quick Start
 1. Open https://terry-su.github.io/CDN/CodeViewer
 2. Input codes
-3. Click "Use Link" button on the top right of editor, then select one way to use.
+3. Click "Use Link" button on the top right of editor, then select one way(copy url for example) to use.
 
 ## Concept
 HTML/CSS/JS + Static Server(Github Page) = Your own CodePen
