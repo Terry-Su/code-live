@@ -65,46 +65,46 @@ export default mapStateStyle({
   }
 })(
   class TheApp extends BasicComponent {
-    async componentDidMount() {
-      const { dispatch } = this.props
-      const urlParams = getUrlSearchParams()
-      dispatch({ type: "app/UPDATE_URL_PARAMS", urlParams })
-      const data = await this.initializeByUrlParamaters() || []
-      isNil(this.mode) && dispatch({ type: "app/UPDATE_MODE", mode: MODES.HTML })
+    componentDidMount() {
+      (async () => {
+        const { dispatch } = this.props
+        const urlParams = getUrlSearchParams()
+        dispatch({ type: "app/UPDATE_URL_PARAMS", urlParams })
+        const data = await this.initializeByUrlParamaters() || []
+        isNil(this.mode) && dispatch({ type: "app/UPDATE_MODE", mode: MODES.HTML })
 
-      
+        const [defaultHTML, defaultCSS, defaultJS] = data
 
-      const [defaultHTML, defaultCSS, defaultJS] = data
-
-      notNil(defaultHTML) &&
-        dispatch({ type: "app/UPDATE_DEFAULT_HTML", defaultHTML })
-      notNil(defaultCSS) &&
-        dispatch({ type: "app/UPDATE_DEFAULT_CSS", defaultCSS })
-      notNil(defaultJS) &&
-        dispatch({ type: "app/UPDATE_DEFAULT_JS", defaultJS })
-
-      if (this.hasOneOfThree) {
         notNil(defaultHTML) &&
-          dispatch({ type: "app/UPDATE_HTML", html: defaultHTML })
+          dispatch({ type: "app/UPDATE_DEFAULT_HTML", defaultHTML })
         notNil(defaultCSS) &&
-          dispatch({ type: "app/UPDATE_CSS", css: defaultCSS })
+          dispatch({ type: "app/UPDATE_DEFAULT_CSS", defaultCSS })
         notNil(defaultJS) &&
-          dispatch({ type: "app/UPDATE_JAVASCRIPT", javascript: defaultJS })
+          dispatch({ type: "app/UPDATE_DEFAULT_JS", defaultJS })
 
-        // this.REFRESH_IFRAME_SYMBOL()
-      }
+        if (this.hasOneOfThree) {
+          notNil(defaultHTML) &&
+            dispatch({ type: "app/UPDATE_HTML", html: defaultHTML })
+          notNil(defaultCSS) &&
+            dispatch({ type: "app/UPDATE_CSS", css: defaultCSS })
+          notNil(defaultJS) &&
+            dispatch({ type: "app/UPDATE_JAVASCRIPT", javascript: defaultJS })
 
-      window.removeEventListener("message", this.messageListener)
-      window.addEventListener("message", this.messageListener)
+          // this.REFRESH_IFRAME_SYMBOL()
+        }
 
-      window.removeEventListener(
-        BASIC_IFRAME_CUSTOM_EVENT,
-        this.basicIframeCustomEventListener
-      )
-      window.addEventListener(
-        BASIC_IFRAME_CUSTOM_EVENT,
-        this.basicIframeCustomEventListener
-      )
+        window.removeEventListener("message", this.messageListener)
+        window.addEventListener("message", this.messageListener)
+
+        window.removeEventListener(
+          BASIC_IFRAME_CUSTOM_EVENT,
+          this.basicIframeCustomEventListener
+        )
+        window.addEventListener(
+          BASIC_IFRAME_CUSTOM_EVENT,
+          this.basicIframeCustomEventListener
+        )
+      })();
     }
 
     async initializeByUrlParamaters() {
@@ -136,25 +136,27 @@ export default mapStateStyle({
         defaultDataCallbackName = DEFAULT_DATA_CALLBACK_NAME
       } = urlParameters
 
-      if ( notNil( html ) || notNil( css ) || notNil( js ) ) {
-        return [ html, css, js ]
-      }
-
       notNil(mode) &&
         isModeValid(mode) &&
         this.dispatch({ type: "app/UPDATE_MODE", mode })
 
-      if (notNil(defaultDataUrl)) {
-        const callbackName = notNil( defaultDataCallbackName ) ? defaultDataCallbackName : DEFAULT_DATA_CALLBACK_NAME
-        const data: URLParameterDefaultData = await fetchCrossDomainData( defaultDataUrl, callbackName )
+      if (notNil(html) || notNil(css) || notNil(js)) {
+        return [html, css, js]
+      }
 
-        if ( ! data ) {
-          return 
+      
+
+      if (notNil(defaultDataUrl)) {
+        const callbackName = notNil(defaultDataCallbackName) ? defaultDataCallbackName : DEFAULT_DATA_CALLBACK_NAME
+        const data: URLParameterDefaultData = await fetchCrossDomainData(defaultDataUrl, callbackName)
+
+        if (!data) {
+          return
         }
 
         const { html, css, js } = data
 
-        return [ html, css, js ]
+        return [html, css, js]
       }
 
       if (isNil(defaultDataUrl)) {
@@ -171,16 +173,16 @@ export default mapStateStyle({
       let { tsHtml: html, tsCss: css, tsJavascript: javascript, encoded = false } = data
       const { dispatch, defaultHTML, defaultCSS, defaultJS } = this
 
-      if ( encoded ) {
-        html = notNil( html ) ? decodeURIComponent( html ) : ''
-        css = notNil( css ) ? decodeURIComponent( css ) : ''
-        javascript = notNil( javascript ) ? decodeURIComponent( javascript ) : ''
+      if (encoded) {
+        html = notNil(html) ? decodeURIComponent(html) : ''
+        css = notNil(css) ? decodeURIComponent(css) : ''
+        javascript = notNil(javascript) ? decodeURIComponent(javascript) : ''
       } else {
-        html = notNil( html ) ? html : ''
-        css = notNil( css ) ? css : ''
-        javascript = notNil( javascript ) ? javascript : ''
+        html = notNil(html) ? html : ''
+        css = notNil(css) ? css : ''
+        javascript = notNil(javascript) ? javascript : ''
       }
-      
+
 
       isNil(defaultHTML) &&
         notNil(html) &&

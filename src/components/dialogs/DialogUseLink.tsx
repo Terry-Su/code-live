@@ -27,6 +27,7 @@ export default mapStateStyle({
           searchStr = `${searchStr}&`
         }
         const value = combined[key]
+        console.log(key, value)
         const valueStr = encodeURIComponent( value )
         searchStr = `${searchStr}${key}=${valueStr}`
         index++

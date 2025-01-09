@@ -3,16 +3,16 @@ import { MODES } from "../constants/types"
 export default {
   namespace: "app",
   state    : {
-    mode: null,
+    mode: "html",
 
     visibleRight: true,
 
-    html       : null,
-    css        : null,
-    javascript : null,
-    defaultHTML: null,
-    defaultCSS : null,
-    defaultJS  : null,
+    html       : "",
+    css        : "",
+    javascript : "",
+    defaultHTML: "",
+    defaultCSS : "",
+    defaultJS  : "",
 
 
 
