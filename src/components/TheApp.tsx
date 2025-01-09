@@ -29,6 +29,7 @@ import Display from "./tool/Display"
 import { fetchText } from "../utils/fetchData"
 import { DEFAULT_DATA_CALLBACK_NAME } from "../constants/default";
 import fetchCrossDomainData from "../utils/fetchCrossDomainData";
+import { isEmpty } from "lodash"
 
 export default mapStateStyle({
   container: {
@@ -184,13 +185,13 @@ export default mapStateStyle({
       }
 
 
-      isNil(defaultHTML) &&
+      isEmpty(defaultHTML) &&
         notNil(html) &&
         dispatch({ type: "app/UPDATE_HTML", html })
-      isNil(defaultCSS) &&
+      isEmpty(defaultCSS) &&
         notNil(css) &&
         dispatch({ type: "app/UPDATE_CSS", css })
-      isNil(defaultJS) &&
+      isEmpty(defaultJS) &&
         notNil(javascript) &&
         dispatch({ type: "app/UPDATE_JAVASCRIPT", javascript })
 
